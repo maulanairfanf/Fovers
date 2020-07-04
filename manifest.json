@@ -1,0 +1,10 @@
+{
+    "name": "Torque",
+    "short_name": "Torque",
+    "description": "Website e-comerce pribadi",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#00acc1",
+    "theme_color": "#00acc1"
+  
+}
