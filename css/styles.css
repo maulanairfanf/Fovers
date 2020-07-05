@@ -1,0 +1,28 @@
+/* Home */
+
+.home {
+}
+
+.home .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 1em;
+}
+
+.country-name {
+    font-size: 20px;
+    width: 300px;
+    padding: 5px;
+}
+
+.country-name i {
+    margin-top: 5px;
+    cursor: pointer;
+    color: #c5cae9;
+}
+
+.home h3{
+    padding-bottom: 2%;
+    border-bottom: 1px solid #c5cae9;
+}
