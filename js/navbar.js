@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
         xhttp.onreadystatechange = function () {
             if (this.readyState === 4) {
                 if (this.status !== 200)
-                    return
+                return;
                 document.querySelectorAll(".topnav").forEach(function (nav) {
                     nav.innerHTML = xhttp.responseText;
                 });
@@ -22,9 +22,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         loadPage(page);
                     });
                 });
-                // } else {
-                //     console.log("error")
-                // }
             };
 
         }
