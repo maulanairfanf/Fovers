@@ -1,7 +1,8 @@
-const CACHE_NAME = "v1";
+const CACHE_NAME = "v4";
 let assetsCache = [
     "/",
     "/index.html",
+    "/country.html",
     "/navbar.html",
     "/pages/home.html",
     "/pages/favorite.html",
@@ -11,6 +12,7 @@ let assetsCache = [
     "/js/materialize.min.js",
     "/js/navbar.js",
     "/js/sw.js",
+    "/js/country.js",
     // css
     "/css/materialize.css",
     "/css/materialize.min.css",
@@ -28,6 +30,8 @@ let assetsCache = [
     "/assets/stadium2.png",
     "/assets/ball.jpg",
     "/assets/maulana.jpg",
+    "/assets/jugling.png",
+    "/assets/kiper.png",
     "/assets/Fovers512x512.png",
     "/assets/Fovers384x384.png",
     "/assets/Fovers256x256.png",
@@ -47,24 +51,23 @@ self.addEventListener("install", function (event) {
 
 
 self.addEventListener("fetch", function (event) {
-    event.respondWith(
-        caches
-        .match(event.request, {
-            cacheName: CACHE_NAME
-        })
-        .then(function (response) {
-            if (response) {
-                console.log("ServiceWorker : use assets from cache ", response.url);
-                return response;
-            }
-
-            console.log(
-                "ServiceWorker : load assets form server ",
-                event.request.url
-            );
-            return fetch(event.request);
-        })
-    );
+    var base_url = "http://api.football-data.org/v2/areas";
+    if (event.request.url.indexOf(base_url) > -1) {
+        event.respondWith(
+            caches.open(CACHE_NAME).then(function (cache) {
+                return fetch(event.request).then(function (response) {
+                    cache.put(event.request.url, response.clone());
+                    return response;
+                })
+            })
+        );
+    } else {
+        event.respondWith(
+            caches.match(event.request).then(function (response) {
+                return response || fetch(event.request);
+            })
+        )
+    }
 });
 
 self.addEventListener("activate", function (event) {

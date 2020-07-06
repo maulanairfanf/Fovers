@@ -1,5 +1,5 @@
-var base_url_areas = "http://api.football-data.org/v2/areas";
-var base_url_liga = "http://api.football-data.org/v2/competitions/"
+var base_url_areas = "http://api.football-data.org/v2/areas/";
+var base_url_liga = "https://api.football-data.org/v2/competitions?areas="
 
 function status(response) {
     if (response.status !== 200) {
@@ -19,46 +19,50 @@ function error(error) {
 }
 
 
-function getCountrys(){
-fetch(base_url_areas, {
-        method: "GET",
-        withCredentials: true,
-        headers: {
-            "X-Auth-Token": "75ef90f669f94902b8d8408d3cd4289c"
-        }
-    })
-    .then(status)
-    .then(json)
-    .then(function (data) {
-        var countryHTML = "";
-        data.areas.forEach(function (country) {
-            countryHTML += `
+function getCountrys() {
+    fetch(base_url_areas, {
+            method: "GET",
+            withCredentials: true,
+            headers: {
+                "X-Auth-Token": "75ef90f669f94902b8d8408d3cd4289c"
+            }
+        })
+        .then(status)
+        .then(json)
+        .then(function (data) {
+            var countryHTML = "";
+            data.areas.forEach(function (country) {
+                countryHTML += `
             <a href="./country.html?name=${country.name}">
             <div class="country-name black-text">${country.name}<i class="material-icons right">details</i></div>
             </a>
             `
-        })
-        document.getElementById("country").innerHTML = countryHTML;
-    }).catch(error);
+            })
+            document.getElementById("country").innerHTML = countryHTML;
+        }).catch(error);
 }
 
-function getCountrysByName(){
+function getCountrysByName() {
     var urlParams = new URLSearchParams(window.location.search);
-    var NameParam = urlParam.get("name");
+    var ParentAreaIdParam = urlParams.get("ParentAreaId");
 
-    fetch(base_url_liga + NameParam, {
-        method: "GET",
-        withCredentials: true,
-        headers: {
-            "X-Auth-Token": "75ef90f669f94902b8d8408d3cd4289c"
-        }
-    })
-    .then(status)
-    .then(json)
-    .then(function(data){
-        console.log(data);
-        var countryHTML = `
-        <div class="country-name black-text">${country.name}<i class="material-icons right">details</i></div>
+    fetch(base_url_liga + ParentAreaIdParam, {
+            method: "GET",
+            withCredentials: true,
+            headers: {
+                "X-Auth-Token": "75ef90f669f94902b8d8408d3cd4289c"
+            }
+        })
+        .then(status)
+        .then(json)
+        .then(function (data) {
+            console.log(data);
+            var countryHTML = ""
+            data.childAreas.forEach(function (liga) {
+                countryHTML += `
+            <div class="country-name black-text">${liga.name}<i class="material-icons right">details</i></div>
         `
-    })
+            })
+
+        })
 }

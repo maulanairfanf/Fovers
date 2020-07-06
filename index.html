@@ -14,8 +14,8 @@
     <link rel="apple-touch-icon" href="/assets/Torque512x512.png">
     <link rel="shortcut icon" href="/assets/Torque512x512.png">
     <!-- Import manifest -->
-    <!-- <link rel="manifest" href="manifest.json"> -->
-    <meta name="theme-color" content="#00acc1 cyan darken" />
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#c5cae9" />
 </head>
 
 <body>
@@ -56,13 +56,32 @@
 
 
     <!-- Import JS -->
- 
+
     <script type="text/javascript" src="https://unpkg.com/snarkdown@1.0.2/dist/snarkdown.umd.js"></script>
     <script type="text/javascript" src="/js/materialize.min.js"></script>
     <script type="text/javascript" src="/js/navbar.js"></script>
     <script type="text/javascript" src="js/country.js"></script>
-    <script type="text/javascript" src="/js/sw.js"></script>
-   
+    <!-- <script type="text/javascript" src="/js/sw.js"></script> -->
+    <script>
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", function () {
+                navigator.serviceWorker
+                    .register("./service-worker.js")
+                    .then(function () {
+                        console.log("Pendaftaran ServiceWorker berhasil");
+                    })
+                    .catch(function () {
+                        console.log("Pendaftaran ServiceWorker gagal");
+                    });
+            });
+        } else {
+            console.log("ServiceWorker belum didukung browser ini.");
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            getCountrys();
+        })
+    </script>
 </body>
 
 </html>

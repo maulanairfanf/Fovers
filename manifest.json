@@ -1,10 +1,39 @@
 {
-    "name": "Torque",
-    "short_name": "Torque",
-    "description": "Website e-comerce pribadi",
+    "name": "Fovers",
+    "short_name": "Fovers",
+    "description": "Website FootBall Lovers",
     "start_url": "/index.html",
     "display": "standalone",
-    "background_color": "#00acc1",
-    "theme_color": "#00acc1"
-  
+    "background_color": "#c5cae9",
+    "theme_color": "#c5cae9",
+    "icons": [{
+            "src": "assets/Fovers512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "assets/Fovers384x384.png",
+            "sizes": "384x384",
+            "type": "image/png"
+        },
+        {
+            "src": "assets/Fovers256x256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "assets/Fovers192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "assets/Fovers128x128.png",
+            "sizes": "128x128",
+            "type": "image/png"
+        }, {
+            "src": "assets/Fovers96x96.png",
+            "sizes": "96x96",
+            "type": "image/png"
+        }
+    ]
 }
