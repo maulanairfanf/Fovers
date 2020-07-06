@@ -33,7 +33,7 @@ function getCountrys() {
             var countryHTML = "";
             data.areas.forEach(function (country) {
                 countryHTML += `
-            <a href="./country.html?name=${country.name}">
+            <a href="./country.html?id=${country.id}">
             <div class="country-name black-text">${country.name}<i class="material-icons right">details</i></div>
             </a>
             `
@@ -44,7 +44,7 @@ function getCountrys() {
 
 function getCountrysByName() {
     var urlParams = new URLSearchParams(window.location.search);
-    var ParentAreaIdParam = urlParams.get("ParentAreaId");
+    var ParentAreaIdParam = urlParams.get("id");
 
     fetch(base_url_liga + ParentAreaIdParam, {
             method: "GET",
@@ -58,11 +58,11 @@ function getCountrysByName() {
         .then(function (data) {
             console.log(data);
             var countryHTML = ""
-            data.childAreas.forEach(function (liga) {
+            data.competitions.forEach(function (liga) {
                 countryHTML += `
             <div class="country-name black-text">${liga.name}<i class="material-icons right">details</i></div>
         `
             })
-
+            document.getElementById("body-render").innerHTML = countryHTML;
         })
 }
