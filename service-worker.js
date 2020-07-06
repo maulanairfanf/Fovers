@@ -27,7 +27,13 @@ let assetsCache = [
     "/assets/stadium1.png",
     "/assets/stadium2.png",
     "/assets/ball.jpg",
-    "/assets/maulana.jpg"
+    "/assets/maulana.jpg",
+    "/assets/Fovers512x512.png",
+    "/assets/Fovers384x384.png",
+    "/assets/Fovers256x256.png",
+    "/assets/Fovers192x192.png",
+    "/assets/Fovers128x128.png",
+    "/assets/Fovers96x96.png",
 ]
 
 

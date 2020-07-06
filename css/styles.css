@@ -7,13 +7,14 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: 1em;
+    margin: 5px;
 }
 
 .country-name {
     font-size: 20px;
-    width: 300px;
-    padding: 5px;
+    width: 320px;
+    padding: 15px;
+    /* border: 2px solid black; */
 }
 
 .country-name i {
