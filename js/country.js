@@ -33,7 +33,7 @@ function getCountrys() {
             var countryHTML = "";
             data.areas.forEach(function (country) {
                 countryHTML += `
-            <a href="./country.html?id=${country.id}">
+            <a href="./pages/countrys.html?id=${country.id}">
             <div class="country-name black-text">${country.name}<i class="material-icons right">details</i></div>
             </a>
             `
@@ -63,6 +63,6 @@ function getCountrysByName() {
             <div class="country-name black-text">${liga.name}<i class="material-icons right">details</i></div>
         `
             })
-            document.getElementById("body-render").innerHTML = countryHTML;
+            document.getElementById("body-render-country").innerHTML = countryHTML;
         })
 }
