@@ -1,0 +1,21 @@
+<div id="body-render-liga" class="container">
+
+</div>
+
+<script>
+      window.onhashchange = function (event) {
+            var page = window.location.hash.substr(1);
+            loadPage(page);
+      }
+</script>
+<script src="/js/navbar.js"></script>
+<script src="/js/country.js">
+
+</script>
+<script type="text/javascript" src="/js/materialize.min.js"></script>
+<script type="text/javascript">
+      document.addEventListener("DOMContentLoaded", function () {
+            loadPage();
+            getLigaByName();
+      })
+</script>

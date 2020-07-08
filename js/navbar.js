@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
         xhttp.onreadystatechange = function () {
             if (this.readyState === 4) {
                 if (this.status !== 200)
-                return;
+                    return;
                 document.querySelectorAll(".topnav").forEach(function (nav) {
                     nav.innerHTML = xhttp.responseText;
                 });
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 } else if (this.status === 404) {
                     content.innerHTML = "<p>Halaman tidak dapat ditemukan.</p>";
                 } else {
-                    content.innerHTML = "<p>Upss halamana tidak dapat di akses</p>";
+                    content.innerHTML = "<p>Upss halaman tidak dapat di akses</p>";
                 }
 
             }

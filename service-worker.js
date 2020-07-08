@@ -1,8 +1,8 @@
-const CACHE_NAME = "v5";
+const CACHE_NAME = "v0";
 let assetsCache = [
     "/",
     "/index.html",
-    "/country.html",
+    // "/render/liga.html",
     "/navbar.html",
     "/pages/home.html",
     "/pages/favorite.html",
