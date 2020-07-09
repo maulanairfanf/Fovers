@@ -14,7 +14,6 @@
     font-size: 20px;
     width: 320px;
     padding: 15px;
-    /* border: 2px solid black; */
 }
 
 .country-name i {
@@ -26,6 +25,25 @@
 .home h3{
     padding-bottom: 2%;
     border-bottom: 1px solid #c5cae9;
+}
+
+
+/* liga */
+.liga{
+
+}
+
+#bendera{
+    width: 30%;
+    margin-top: 5%;
+}
+
+.liga .row{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 5px;
+    /* border: 2px solid black; */
+    margin-left: 10%;
 }
 
 

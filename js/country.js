@@ -1,6 +1,6 @@
 var base_url_areas = "http://api.football-data.org/v2/areas/";
 var base_url_liga = "https://api.football-data.org/v2/competitions?areas="
-var base_url_team = "https://api.football-data.org/v2/competitions/"
+// var base_url_team = "https://api.football-data.org/v2/competitions/"
 
 function status(response) {
     if (response.status !== 200) {
@@ -34,12 +34,13 @@ function getCountrys() {
             var countryHTML = "";
             data.areas.forEach(function (country) {
                 countryHTML += `
-            <a href="#liga?id=${country.id}">
+            <a href="./liga.html?id=${country.id}">
             <div class="country-name black-text">${country.name}<i class="material-icons right">details</i></div>
             </a>
             `
             })
             document.getElementById("country").innerHTML = countryHTML;
+           
         }).catch(error);
 }
 
@@ -58,17 +59,27 @@ function getLigaByName() {
         .then(json)
         .then(function (data) {
             console.log(data);
+            var country = `
+            <div class="center"> ${data.competitions[0].area.name}</div>
+            <img class="responsive-img" id="bendera" alt="bendera negara"
+            
+            
+            src="${data.competitions[0].area.ensignUrl}">
+            `;
             var countryHTML = ""
             data.competitions.forEach(function (liga) {
                 countryHTML += `
-                <a href="./teams.html?id=${liga.id}>
-                    <div class="country-name black-text">${liga.name}<i class="material-icons right">details</i></div>
-                </a>
+                    
+                    <div class="country-name black-text ">${liga.name}</div>
+                    
             `
             })
             document.getElementById("body-render-liga").innerHTML = countryHTML;
+            document.getElementById("body-render-country-liga").innerHTML = country;
+            
         }).catch(error);
 }
+
 
 // function getLigaByName() {
 //     var urlParamsTeams = new URLSearchParams(window.location.search);
@@ -94,3 +105,4 @@ function getLigaByName() {
 //             document.getElementById("body-render-team").innerHTML = LigaHTML;
 //         }).catch(error);
 // }
+

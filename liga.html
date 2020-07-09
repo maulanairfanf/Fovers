@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>FootBall</title>
+      <!--Import Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!-- Import CSS -->
+      <link type="text/css" rel="stylesheet" href="/css/materialize.min.css">
+      <link type="text/css" rel="stylesheet" href="/css/styles.css">
+      <!-- Import Icon Ios -->
+      <link rel="apple-touch-icon" href="/assets/Torque512x512.png">
+      <link rel="shortcut icon" href="/assets/Torque512x512.png">
+      <!-- Import manifest -->
+      <link rel="manifest" href="manifest.json">
+      <meta name="theme-color" content="#c5cae9" />
+</head>
+
+<body>
+
+      <!-- Navbar -->
+      <div class="navbar ">
+            <nav class="#c5cae9 indigo lighten-4">
+                  <div class="nav-wrapper container ">
+                        <a href="./index.html" class="brand-logo waves-effect center">Fovers</a>
+                  </div>
+            </nav>
+      </div>
+
+      <!-- Body -->
+      <div class="liga container">
+            <h3 class="center" id="body-render-country-liga"></h3>
+            <div class="row center" id="body-render-liga">
+
+            </div>
+      </div>
+
+
+      <!-- Import JS -->
+      <script type="text/javascript" src="https://unpkg.com/snarkdown@1.0.2/dist/snarkdown.umd.js"></script>
+      <script type="text/javascript" src="/js/materialize.min.js"></script>
+      <script type="text/javascript" src="js/country.js"></script>
+      <script type="text/javascript" src="/js/sw.js"></script>
+      <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                  getLigaByName();
+            });
+      </script>
+</body>
+
+</html>

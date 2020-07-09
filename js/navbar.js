@@ -50,6 +50,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
             }
         }
+        document.addEventListener("DOMContentLoaded", function(){
+            getCountrys();
+        })
         xhttp.open("GET", "pages/" + page + ".html", true);
         xhttp.send();
     }
