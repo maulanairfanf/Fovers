@@ -50,7 +50,14 @@
     </div>
 
     <!-- Body -->
+    <div class="progress" id="loader">
+        <div class="indeterminate" id=""></div>
+    </div>
     <div id="body-render" class="container">
+
+
+    </div>
+    <div id="alert">
 
     </div>
 
@@ -61,6 +68,11 @@
     <script type="text/javascript" src="/js/navbar.js"></script>
     <script type="text/javascript" src="js/country.js"></script>
     <script type="text/javascript" src="/js/sw.js"></script>
+    <script>
+         document.addEventListener("DOMContentLoaded", function () {
+                  getCountrys();
+            });
+    </script>
 </body>
 
 </html>

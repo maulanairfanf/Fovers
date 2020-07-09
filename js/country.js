@@ -16,7 +16,7 @@ function json(response) {
 }
 
 function error(error) {
-    console.log("error :  " + error)
+    console.log("error :  " + error);
 }
 
 
@@ -31,6 +31,8 @@ function getCountrys() {
         .then(status)
         .then(json)
         .then(function (data) {
+
+            console.log(data);
             var countryHTML = "";
             data.areas.forEach(function (country) {
                 countryHTML += `
@@ -40,8 +42,13 @@ function getCountrys() {
             `
             })
             document.getElementById("country").innerHTML = countryHTML;
-           
+            remove();
         }).catch(error);
+}
+
+function remove() {
+    var loader = document.getElementById("loader");
+    loader.remove();
 }
 
 function getLigaByName() {
@@ -58,12 +65,12 @@ function getLigaByName() {
         .then(status)
         .then(json)
         .then(function (data) {
+
             console.log(data);
+            console.log(data.count);
             var country = `
             <div class="center"> ${data.competitions[0].area.name}</div>
             <img class="responsive-img" id="bendera" alt="bendera negara"
-            
-            
             src="${data.competitions[0].area.ensignUrl}">
             `;
             var countryHTML = ""
@@ -76,9 +83,12 @@ function getLigaByName() {
             })
             document.getElementById("body-render-liga").innerHTML = countryHTML;
             document.getElementById("body-render-country-liga").innerHTML = country;
-            
+            remove();
+
         }).catch(error);
 }
+
+
 
 
 // function getLigaByName() {
@@ -105,4 +115,3 @@ function getLigaByName() {
 //             document.getElementById("body-render-team").innerHTML = LigaHTML;
 //         }).catch(error);
 // }
-
