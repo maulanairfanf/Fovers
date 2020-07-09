@@ -65,12 +65,12 @@ function getLigaByName() {
         .then(status)
         .then(json)
         .then(function (data) {
-
+            
             console.log(data);
             console.log(data.count);
             var country = `
             <div class="center"> ${data.competitions[0].area.name}</div>
-            <img class="responsive-img" id="bendera" alt="bendera negara"
+            <img class="responsive-img" id="bendera" alt="Flag-Country"
             src="${data.competitions[0].area.ensignUrl}">
             `;
             var countryHTML = ""
@@ -81,11 +81,13 @@ function getLigaByName() {
                     
             `
             })
+            M.toast({html: 'Succes To Fetch Data'})
             document.getElementById("body-render-liga").innerHTML = countryHTML;
             document.getElementById("body-render-country-liga").innerHTML = country;
             remove();
-
-        }).catch(error);
+        }).catch(function (error){
+            M.toast({html: 'Failed To Fetch Data'})
+        });
 }
 
 
