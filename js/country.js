@@ -65,17 +65,12 @@ function getCountrys() {
         }).catch(error);
 }
 
-function remove() {
-    var loader = document.getElementById("loader");
-    loader.remove();
-}
-
 function getLigaByName() {
     var urlParamsLiga = new URLSearchParams(window.location.search);
     var ParentAreaIdParam = urlParamsLiga.get("id");
 
     if ('caches' in window) {
-        caches.match(base_url_areas).then(function (response) {
+        caches.match(base_url_areas + ParentAreaIdParam).then(function (response) {
             if (response) {
                 response.json().then(function (data) {
                     var country = `
@@ -95,11 +90,9 @@ function getLigaByName() {
                             </div>
                             `
                     })
-                    M.toast({
-                        html: 'Succes To Fetch Data'
-                    })
                     document.getElementById("body-render-liga").innerHTML = countryHTML;
                     document.getElementById("body-render-country-liga").innerHTML = country;
+                    resolve(data);
                 })
             }
         })
@@ -145,6 +138,22 @@ function getLigaByName() {
         });
 }
 
+function remove() {
+    var loader = document.getElementById("loader");
+    loader.remove();
+}
+
+document.addEventListener("DOMContentLoaded", function(){
+    var item = getLigaByName();
+    var save = document.getElementById("add");
+
+    save.onclick = function(){
+        console.log("Klik Active");
+        item.then(function(country){
+            saveForLater(country);
+        })
+    }
+})
 
 
 
