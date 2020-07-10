@@ -21,6 +21,25 @@ function error(error) {
 
 
 function getCountrys() {
+
+    if ('caches' in window) {
+        caches.match(base_url_areas).then(function (response) {
+            if (response) {
+                response.json().then(function (data) {
+                    var countryHTML = "";
+                    data.areas.forEach(function (country) {
+                        countryHTML += `
+                        <a href="./liga.html?id=${country.id}">
+                        <div class="country-name black-text">${country.name}<i class="material-icons right">details</i></div>
+                        </a>
+                        `
+                    })
+                    document.getElementById("country").innerHTML = countryHTML;
+                })
+            }
+        })
+    }
+
     fetch(base_url_areas, {
             method: "GET",
             withCredentials: true,
@@ -55,6 +74,37 @@ function getLigaByName() {
     var urlParamsLiga = new URLSearchParams(window.location.search);
     var ParentAreaIdParam = urlParamsLiga.get("id");
 
+    if ('caches' in window) {
+        caches.match(base_url_areas).then(function (response) {
+            if (response) {
+                response.json().then(function (data) {
+                    var country = `
+                    <div class="center" id="negara"> ${data.competitions[0].area.name}</div>
+                    <img class="responsive-img" id="bendera" alt="Flag"
+                    src="${data.competitions[0].area.ensignUrl}">
+                    `;
+                    var countryHTML = ""
+                    data.competitions.forEach(function (liga) {
+                        countryHTML += `
+                            <div class="card">
+                                <div class="country-name black-text card-title">${liga.name}</div>
+                                <div class="card-content">
+                                <p class="">Start Season : ${liga.currentSeason.startDate}</p>
+                                <p>End Season : ${liga.currentSeason.endDate}</p>
+                                </div>
+                            </div>
+                            `
+                    })
+                    M.toast({
+                        html: 'Succes To Fetch Data'
+                    })
+                    document.getElementById("body-render-liga").innerHTML = countryHTML;
+                    document.getElementById("body-render-country-liga").innerHTML = country;
+                })
+            }
+        })
+    }
+
     fetch(base_url_liga + ParentAreaIdParam, {
             method: "GET",
             withCredentials: true,
@@ -65,28 +115,33 @@ function getLigaByName() {
         .then(status)
         .then(json)
         .then(function (data) {
-            
-            console.log(data);
-            console.log(data.count);
             var country = `
-            <div class="center"> ${data.competitions[0].area.name}</div>
-            <img class="responsive-img" id="bendera" alt="Flag-Country"
+            <div class="center" id="negara"> ${data.competitions[0].area.name}</div>
+            <img class="responsive-img" id="bendera" alt="Flag"
             src="${data.competitions[0].area.ensignUrl}">
             `;
             var countryHTML = ""
             data.competitions.forEach(function (liga) {
                 countryHTML += `
-                    
-                    <div class="country-name black-text ">${liga.name}</div>
-                    
-            `
+                    <div class="card">
+                        <div class="country-name black-text card-title">${liga.name}</div>
+                        <div class="card-content">
+                        <p class="">Start Season : ${liga.currentSeason.startDate}</p>
+                        <p>End Season : ${liga.currentSeason.endDate}</p>
+                        </div>
+                    </div>
+                    `
             })
-            M.toast({html: 'Succes To Fetch Data'})
+            M.toast({
+                html: 'Succes To Fetch Data'
+            })
             document.getElementById("body-render-liga").innerHTML = countryHTML;
             document.getElementById("body-render-country-liga").innerHTML = country;
             remove();
-        }).catch(function (error){
-            M.toast({html: 'Failed To Fetch Data'})
+        }).catch(function (error) {
+            M.toast({
+                html: 'Failed To Fetch Data'
+            })
         });
 }
 
