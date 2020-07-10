@@ -39,9 +39,10 @@
 
             </div>
             <div class="center">
-                  <a class="waves-effect waves-light btn-large col s12 m6" id="add"><i class="material-icons left">add</i>Add to
+                  <a class="waves-effect waves-light btn-large col s12 m6" id="add"><i
+                              class="material-icons left">add</i>Add to
                         favourite</a>
-                        <br>
+                  <br>
                   <a class="waves-effect waves-light btn-large col s12 m6" href="index.html"><i
                               class="material-icons left">arrow_back</i>Back To Home</a>
             </div>
@@ -53,9 +54,18 @@
       <script type="text/javascript" src="/js/materialize.min.js"></script>
       <script type="text/javascript" src="js/country.js"></script>
       <script type="text/javascript" src="/js/sw.js"></script>
+      <script src="js/idb.js"></script>
+      <script src="js/db.js"></script>
       <script>
             document.addEventListener("DOMContentLoaded", function () {
-                  getLigaByName();
+                  var item = getLigaByName();
+                  var save = document.getElementById("add");
+                  save.onclick = function () {
+                        console.log("Tombol FAB di klik.");
+                        item.then(function(country){
+                              saveForLater(country);
+                        })
+                  }
             });
       </script>
 </body>
