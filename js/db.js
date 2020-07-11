@@ -1,20 +1,20 @@
-var dbPromised = idb.open("countrys", 1, function (upgradeDb) {
+var dbPromised = idb.open("Football-Data", 1, function (upgradeDb) {
   var countryObjectStore = upgradeDb.createObjectStore("countrys", {
-    keyPath: "ID"
+    keyPath: "id"
   });
-  countryObjectStore.createIndex("liga", "country", {
+  countryObjectStore.createIndex("liga", "liga", {
     unique: false
   });
 });
 
 
-function saveForLater(country) {
+function saveForLater(data) {
   dbPromised
     .then(function (db) {
       var tx = db.transaction("countrys", "readwrite");
       var store = tx.objectStore("countrys");
-      console.log(competitions.country);
-      store.add(country.competitions);
+      console.log(data.competitions);
+      store.add(data.competitions);
       return tx.complete;
     })
     .then(function () {
