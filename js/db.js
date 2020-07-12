@@ -13,8 +13,8 @@ function saveForLater(data) {
     .then(function (db) {
       var tx = db.transaction("countrys", "readwrite");
       var store = tx.objectStore("countrys");
-      console.log(data.competitions);
-      store.add(data.competitions);
+      console.log(data);
+      store.put(data);
       return tx.complete;
     })
     .then(function () {
@@ -43,4 +43,3 @@ function saveForLater(data) {
 //       console.log("Artikel berhasil di simpan.");
 //     });
 // }
-

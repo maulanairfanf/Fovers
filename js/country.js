@@ -87,8 +87,7 @@ function getLigaByName() {
                             <div class="card">
                                 <div class="country-name black-text card-title">${liga.name}</div>
                                 <div class="card-content">
-                                <p class="">Start Season : ${liga.currentSeason.startDate}</p>
-                                <p>End Season : ${liga.currentSeason.endDate}</p>
+                                
                                 </div>
                             </div>
                             `
@@ -122,8 +121,7 @@ function getLigaByName() {
                     <div class="card">
                         <div class="country-name black-text card-title">${liga.name}</div>
                         <div class="card-content">
-                        <p class="">Start Season : ${liga.currentSeason.startDate}</p>
-                        <p>End Season : ${liga.currentSeason.endDate}</p>
+                        
                         </div>
                     </div>
                     `
@@ -143,10 +141,93 @@ function getLigaByName() {
     })
 }
 
-function remove() {
+
+
+function getAll() {
+    return new Promise(function (resolve, reject) {
+        dbPromised
+            .then(function (db) {
+                var tx = db.transaction("countrys", "readonly");
+                var store = tx.objectStore("countrys");
+                return store.getAll();
+            })
+            .then(function (countrys) {
+                resolve(countrys);
+            })
+    })
+}
+
+function getSavedCountrys() {
+    getAll().then(function (countrys) {
+        console.log(countrys);
+        var countryHTML = "";
+        countrys.forEach(function (country) {
+            countryHTML += `
+                <a href="./liga.html?id=${country.id}&saved=true">
+                <div class="country-name black-text">${country.name}<i class="material-icons right">details</i></div>
+                </a>
+                `
+        });
+
+        document.getElementById("body-render").innerHTML = countryHTML;
+    })
+
+
+}
+
+// function getSavedCountryById() {
+//     var urlParamsLiga = new URLSearchParams(window.location.search);
+//     var idParam = urlParams.get("id");
+
+//     getById(idParam).then(function (country) {
+//         var country = `
+//             <div class="center" id="negara"> ${data.competitions[0].area.name}</div>
+//             <img class="responsive-img" id="bendera" alt="Flag"
+//             src="${data.competitions[0].area.ensignUrl}">
+//             `;
+//         countryHTML = ""
+//         data.competitions.forEach(function (liga) {
+//             countryHTML += `
+//                     <div class="card">
+//                         <div class="country-name black-text card-title">${liga.name}</div>
+//                         <div class="card-content">
+                        
+//                         </div>
+//                     </div>
+//                     `
+//         })
+//         // M.toast({
+//         //     html: 'Succes To Fetch Data'
+//         // })
+//         document.getElementById("body-render-liga").innerHTML = countryHTML;
+//         document.getElementById("body-render-country-liga").innerHTML = country;
+//     })
+// }
+
+
+// function getById(id) {
+//     return new Promise(function(resolve, reject) {
+//       dbPromised
+//         .then(function(db) {
+//           var tx = db.transaction("countrys", "readonly");
+//           var store = tx.objectStore("countrys");
+//           return store.get(id);
+//         })
+//         .then(function(country) {
+//           resolve(country);
+//         });
+//     });
+//   }
+
+
+  function remove() {
     var loader = document.getElementById("loader");
     loader.remove();
 }
+
+
+
+
 
 
 // function getLigaByName() {
