@@ -163,8 +163,8 @@ function getSavedCountrys() {
         var countryHTML = "";
         countrys.forEach(function (country) {
             countryHTML += `
-                <a href="./liga.html?id=${country.id}&saved=true">
-                <div class="country-name black-text">${country.name}<i class="material-icons right">details</i></div>
+                <a href="./liga.html?id=${country.competitions[0].area.id}&saved=true">
+                <div class="country-name black-text">${country.competitions[0].area.name}<i class="material-icons right">details</i></div>
                 </a>
                 `
         });
@@ -175,52 +175,51 @@ function getSavedCountrys() {
 
 }
 
-// function getSavedCountryById() {
-//     var urlParamsLiga = new URLSearchParams(window.location.search);
-//     var idParam = urlParams.get("id");
+function getSavedCountryById() {
+    var urlParamsLiga = new URLSearchParams(window.location.search);
+    var idParam = urlParamsLiga.get("id");
 
-//     getById(idParam).then(function (country) {
-//         var country = `
-//             <div class="center" id="negara"> ${data.competitions[0].area.name}</div>
-//             <img class="responsive-img" id="bendera" alt="Flag"
-//             src="${data.competitions[0].area.ensignUrl}">
-//             `;
-//         countryHTML = ""
-//         data.competitions.forEach(function (liga) {
-//             countryHTML += `
-//                     <div class="card">
-//                         <div class="country-name black-text card-title">${liga.name}</div>
-//                         <div class="card-content">
-                        
-//                         </div>
-//                     </div>
-//                     `
-//         })
-//         // M.toast({
-//         //     html: 'Succes To Fetch Data'
-//         // })
-//         document.getElementById("body-render-liga").innerHTML = countryHTML;
-//         document.getElementById("body-render-country-liga").innerHTML = country;
-//     })
-// }
+    console.log(idParam)
+    getById(parseInt(idParam)).then(function (country) {
+        console.log(country);
+        console.log(idParam)
+        var countryHTML = ""
+        country.competitions.forEach(function (countrys) {
+            countryHTML +=
+                `
+                <div class="card">
+                    <div class="country-name black-text card-title">${countrys.name}</div>
+                    <div class="card-content">
+                    
+                    </div>
+                </div>
+            `
+        })
+        document.getElementById("body-render-liga").innerHTML = countryHTML;
+        // document.getElementById("body-render-country-liga").innerHTML = country;
+    })
+}
+
+function getById(id) {
+    return new Promise(function (resolve, reject) {
+        dbPromised
+            .then(function (db) {
+                var tx = db.transaction("countrys", "readonly");
+                var store = tx.objectStore("countrys");
+                return store.getAll();
+            })
+            .then(function (country) {
+                // console.log(country);
+                resolve(country);
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    });
+}
 
 
-// function getById(id) {
-//     return new Promise(function(resolve, reject) {
-//       dbPromised
-//         .then(function(db) {
-//           var tx = db.transaction("countrys", "readonly");
-//           var store = tx.objectStore("countrys");
-//           return store.get(id);
-//         })
-//         .then(function(country) {
-//           resolve(country);
-//         });
-//     });
-//   }
-
-
-  function remove() {
+function remove() {
     var loader = document.getElementById("loader");
     loader.remove();
 }

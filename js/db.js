@@ -1,7 +1,5 @@
 var dbPromised = idb.open("Football-Data", 1, function (upgradeDb) {
-  var countryObjectStore = upgradeDb.createObjectStore("countrys", {
-    keyPath: "id"
-  });
+  var countryObjectStore = upgradeDb.createObjectStore("countrys", {autoIncrement:true});
   countryObjectStore.createIndex("liga", "liga", {
     unique: false
   });
@@ -14,7 +12,7 @@ function saveForLater(data) {
       var tx = db.transaction("countrys", "readwrite");
       var store = tx.objectStore("countrys");
       console.log(data);
-      store.put(data);
+      store.put(data, data.competitions[0].area.id);
       return tx.complete;
     })
     .then(function () {
@@ -23,23 +21,3 @@ function saveForLater(data) {
 }
 
 
-// var dbPromised = idb.open("news-reader", 1, function(upgradeDb) {
-//   var articlesObjectStore = upgradeDb.createObjectStore("articles", {
-//     keyPath: "ID"
-//   });
-//   articlesObjectStore.createIndex("post_title", "post_title", { unique: false });
-// });
-
-// function saveForLater(article) {
-//   dbPromised
-//     .then(function(db) {
-//       var tx = db.transaction("articles", "readwrite");
-//       var store = tx.objectStore("articles");
-//       console.log(article);
-//       store.add();
-//       return tx.complete;
-//     })
-//     .then(function() {
-//       console.log("Artikel berhasil di simpan.");
-//     });
-// }
