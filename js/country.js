@@ -206,7 +206,7 @@ function getById(id) {
             .then(function (db) {
                 var tx = db.transaction("countrys", "readonly");
                 var store = tx.objectStore("countrys");
-                return store.getAll();
+                return store.get(id);
             })
             .then(function (country) {
                 // console.log(country);

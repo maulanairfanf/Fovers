@@ -1,5 +1,5 @@
 var dbPromised = idb.open("Football-Data", 1, function (upgradeDb) {
-  var countryObjectStore = upgradeDb.createObjectStore("countrys", {autoIncrement:true});
+  var countryObjectStore = upgradeDb.createObjectStore("countrys");
   countryObjectStore.createIndex("liga", "liga", {
     unique: false
   });
