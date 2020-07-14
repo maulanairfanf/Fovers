@@ -198,6 +198,7 @@ function getSavedCountryById() {
         document.getElementById("body-render-liga").innerHTML = countryHTML;
         // document.getElementById("body-render-country-liga").innerHTML = country;
     })
+    remove();
 }
 
 function getById(id) {
