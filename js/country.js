@@ -29,7 +29,7 @@ function getCountrys() {
                     var countryHTML = "";
                     data.areas.forEach(function (country) {
                         countryHTML += `
-                        <a href="#ligas?id=${country.id}">
+                        <a href="./liga.html?id=${country.id}">
                         <div class="country-name black-text">${country.name}<i class="material-icons right">details</i></div>
                         </a>
                         `
@@ -53,7 +53,7 @@ function getCountrys() {
             var countryHTML = "";
             data.areas.forEach(function (country) {
                 countryHTML += `
-            <a href="#ligas?id=${country.id}">
+            <a href="./liga.html?id=${country.id}">
             <div class="country-name black-text">${country.name}<i class="material-icons right">details</i></div>
             </a>
             `
@@ -97,7 +97,7 @@ function getLigaByName() {
                 }
             })
         }
-
+        
         fetch(base_url_liga + ParentAreaIdParam, {
                 method: "GET",
                 withCredentials: true,

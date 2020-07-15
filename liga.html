@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FootBall</title>
+    <!--Import Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Import CSS -->
+    <link type="text/css" rel="stylesheet" href="/css/materialize.min.css">
+    <link type="text/css" rel="stylesheet" href="/css/styles.css">
+    <!-- Import Icon Ios -->
+    <link rel="apple-touch-icon" href="/assets/Torque512x512.png">
+    <link rel="shortcut icon" href="/assets/Torque512x512.png">
+    <!-- Import manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#c5cae9" />
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar ">
+        <nav class="#c5cae9 indigo lighten-4">
+            <div class="nav-wrapper container ">
+                <a href="./index.html" class="brand-logo waves-effect">Fovers</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                <!-- <ul class="topnav right hide-on-med-and-down"></ul>
+                    <ul class="sidenav" id="mobile-demo">
+                        <li>
+                            <div class="user-view">
+                                <div class="background">
+    
+                                    <img src="/assets/stadium1.png" class="responsive-img" alt="Stadium">
+                                </div>
+                                <br>
+                                <img class="circle responsive-img" src="assets/ball.jpg" alt="Ball">
+                                <br>
+                                <span class="white-text name">Welcome Back Maul</span>
+                                <span class="white-text email">maulanairfanf@gmail.com</span>
+                            </div>
+                        </li>
+                        <li><a href="#home"><i class="material-icons">home</i>Home</a></li>
+                        <li><a href="#favorite"><i class="material-icons">favorite</i>Favorite</a></li>
+                        <li><a href="#about"><i class="material-icons">info</i>About</a></li>
+                    </ul> -->
+            </div>
+        </nav>
+    </div>
+
+    <!-- Body -->
+    <div class="progress" id="loader">
+        <div class="indeterminate" id=""></div>
+    </div>
+    <div class="liga container">
+        <h3 class="center" id="body-render-country-liga"></h3>
+        <div class="row center" id="body-render-liga">
+
+        </div>
+        <div class="center">
+            <a class="waves-effect waves-light btn-large col s12 m6" id="add"><i class="material-icons left">add</i>Add
+                to
+                favourite</a>
+            <br>
+            <a class="waves-effect waves-light btn-large col s12 m6" href="index.html"><i
+                    class="material-icons left">arrow_back</i>Back To Home</a>
+        </div>
+    </div>
+
+
+    <!-- Import JS -->
+    <script type="text/javascript" src="https://unpkg.com/snarkdown@1.0.2/dist/snarkdown.umd.js"></script>
+    <script type="text/javascript" src="/js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/country.js"></script>
+    <script type="text/javascript" src="/js/sw.js"></script>
+    <!-- <script type="text/javascript" src="js/navbar.js"></script> -->
+    <script src="js/idb.js"></script>
+    <script src="js/db.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var urlParams = new URLSearchParams(window.location.search);
+            var isFromSaved = urlParams.get("saved");
+
+            var btnSave = document.getElementById("add");
+
+            if (isFromSaved) {
+                btnSave.style.display = 'none';
+                getSavedCountryById();
+            } else {
+                var item = getLigaByName();
+            }
+
+
+            btnSave.onclick = function () {
+                console.log("Tombol FAB di klik.");
+                item.then(function (country) {
+
+                    saveForLater(country)
+
+                })
+            }
+        });
+    </script>
+</body>
+
+</html>
