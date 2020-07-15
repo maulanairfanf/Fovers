@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-    let page = window.location.hash.substr(1);
+    let page = window.location.hash.substr(1).split('?')[0];
     if (page === "") page = "home";
     loadPage(page);
 
@@ -41,9 +41,9 @@ document.addEventListener("DOMContentLoaded", function () {
             if (this.readyState === 4) {
                 const content = document.querySelector("#body-render");
 
-                if(page === "home"){
+                if (page === "home") {
                     getCountrys();
-                } else if (page === "favorite"){
+                } else if (page === "favorite") {
                     getSavedCountrys();
                 }
 
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             }
         }
-        document.addEventListener("DOMContentLoaded", function(){
+        document.addEventListener("DOMContentLoaded", function () {
             getCountrys();
         })
         xhttp.open("GET", "pages/" + page + ".html", true);

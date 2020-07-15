@@ -29,7 +29,7 @@ function getCountrys() {
                     var countryHTML = "";
                     data.areas.forEach(function (country) {
                         countryHTML += `
-                        <a href="./liga.html?id=${country.id}">
+                        <a href="#ligas?id=${country.id}">
                         <div class="country-name black-text">${country.name}<i class="material-icons right">details</i></div>
                         </a>
                         `
@@ -50,12 +50,10 @@ function getCountrys() {
         .then(status)
         .then(json)
         .then(function (data) {
-
-            console.log(data);
             var countryHTML = "";
             data.areas.forEach(function (country) {
                 countryHTML += `
-            <a href="./liga.html?id=${country.id}">
+            <a href="#ligas?id=${country.id}">
             <div class="country-name black-text">${country.name}<i class="material-icons right">details</i></div>
             </a>
             `
@@ -73,7 +71,7 @@ function getLigaByName() {
         var ParentAreaIdParam = urlParamsLiga.get("id");
 
         if ('caches' in window) {
-            caches.match(base_url_areas + ParentAreaIdParam).then(function (response) {
+            caches.match(base_url_liga + ParentAreaIdParam).then(function (response) {
                 if (response) {
                     response.json().then(function (data) {
                         var country = `
@@ -93,7 +91,7 @@ function getLigaByName() {
                             `
                         })
                         document.getElementById("body-render-liga").innerHTML = countryHTML;
-                        document.getElementById("body-render-country-liga").innerHTML = country;
+                        // document.getElementById("body-render-country-liga").innerHTML = country;
                         resolve(data);
                     })
                 }
@@ -130,7 +128,7 @@ function getLigaByName() {
                 //     html: 'Succes To Fetch Data'
                 // })
                 document.getElementById("body-render-liga").innerHTML = countryHTML;
-                document.getElementById("body-render-country-liga").innerHTML = country;
+                // document.getElementById("body-render-country-liga").innerHTML = country;
                 resolve(data);
                 remove();
             }).catch(function (error) {
@@ -159,7 +157,6 @@ function getAll() {
 
 function getSavedCountrys() {
     getAll().then(function (countrys) {
-        console.log(countrys);
         var countryHTML = "";
         countrys.forEach(function (country) {
             countryHTML += `
@@ -179,10 +176,7 @@ function getSavedCountryById() {
     var urlParamsLiga = new URLSearchParams(window.location.search);
     var idParam = urlParamsLiga.get("id");
 
-    console.log(idParam)
     getById(parseInt(idParam)).then(function (country) {
-        console.log(country);
-        console.log(idParam)
         var countryHTML = ""
         country.competitions.forEach(function (countrys) {
             countryHTML +=
@@ -210,7 +204,6 @@ function getById(id) {
                 return store.get(id);
             })
             .then(function (country) {
-                // console.log(country);
                 resolve(country);
             })
             .catch(function (error) {
