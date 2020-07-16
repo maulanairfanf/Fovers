@@ -97,7 +97,7 @@ function getLigaByName() {
                 }
             })
         }
-        
+
         fetch(base_url_liga + ParentAreaIdParam, {
                 method: "GET",
                 withCredentials: true,
@@ -124,9 +124,6 @@ function getLigaByName() {
                     </div>
                     `
                 })
-                // M.toast({
-                //     html: 'Succes To Fetch Data'
-                // })
                 document.getElementById("body-render-liga").innerHTML = countryHTML;
                 // document.getElementById("body-render-country-liga").innerHTML = country;
                 resolve(data);
@@ -167,8 +164,9 @@ function getSavedCountrys() {
         });
 
         document.getElementById("body-render").innerHTML = countryHTML;
-    })
 
+    })
+    remove();
 
 }
 
@@ -177,6 +175,13 @@ function getSavedCountryById() {
     var idParam = urlParamsLiga.get("id");
 
     getById(parseInt(idParam)).then(function (country) {
+        var button = `
+            <a class="waves-effect waves-light btn-large col s12 m6" href="./index.html#favorite"><i
+            class="material-icons left">arrow_back</i>Back To Favorite</a>
+            <a class="waves-effect waves-light btn-large col s12 m6" id="delete"><i
+                    class="material-icons left">arrow_back</i>delete</a>
+            <a href=""></a>
+        `;
         var countryHTML = ""
         country.competitions.forEach(function (countrys) {
             countryHTML +=
@@ -189,9 +194,22 @@ function getSavedCountryById() {
                 </div>
             `
         })
+        document.getElementById("body-render-country-liga").innerHTML = button;
         document.getElementById("body-render-liga").innerHTML = countryHTML;
-        // document.getElementById("body-render-country-liga").innerHTML = country;
+
     })
+    btnDelete.onclick = function () {
+        console.log(id);
+        console.log("Tombol delete di klik.");
+        item.then(function (country) {
+
+                Delete(country)
+
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    }
     remove();
 }
 
@@ -213,10 +231,15 @@ function getById(id) {
 }
 
 
+
 function remove() {
     var loader = document.getElementById("loader");
     loader.remove();
 }
+
+// function delete(){
+//     var button = 
+// }
 
 
 

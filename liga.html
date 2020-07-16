@@ -54,17 +54,20 @@
         <div class="indeterminate" id=""></div>
     </div>
     <div class="liga container">
-        <h3 class="center" id="body-render-country-liga"></h3>
+
         <div class="row center" id="body-render-liga">
 
         </div>
-        <div class="center">
+        <div class="center" id="body-render-country-liga"></div>
+        <div class="center" id="button">
             <a class="waves-effect waves-light btn-large col s12 m6" id="add"><i class="material-icons left">add</i>Add
                 to
                 favourite</a>
             <br>
-            <a class="waves-effect waves-light btn-large col s12 m6" href="index.html"><i
+            <a class="waves-effect waves-light btn-large col s12 m6" id="back" href="index.html"><i
                     class="material-icons left">arrow_back</i>Back To Home</a>
+            <a href=""></a>
+
         </div>
     </div>
 
@@ -74,34 +77,40 @@
     <script type="text/javascript" src="/js/materialize.min.js"></script>
     <script type="text/javascript" src="js/country.js"></script>
     <script type="text/javascript" src="/js/sw.js"></script>
-    <!-- <script type="text/javascript" src="js/navbar.js"></script> -->
-    <script src="js/idb.js"></script>
-    <script src="js/db.js"></script>
+    <script type="text/javascript" src="js/navbar.js"></script>
+    <script type="text/javascript" src="js/idb.js"></script>
+    <script type="text/javascript" src="js/db.js"></script>
+    <script type="text/javascript" src="js/fromSave.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             var urlParams = new URLSearchParams(window.location.search);
             var isFromSaved = urlParams.get("saved");
-
+            var btnBack = document.getElementById("back")
             var btnSave = document.getElementById("add");
+            var btnDelete = document.getElementById("delete");
 
             if (isFromSaved) {
+                btnBack.style.display = 'none';
                 btnSave.style.display = 'none';
                 getSavedCountryById();
             } else {
                 var item = getLigaByName();
+
             }
 
-
             btnSave.onclick = function () {
-                console.log("Tombol FAB di klik.");
+                console.log("Tombol add di klik.");
                 item.then(function (country) {
 
                     saveForLater(country)
 
                 })
             }
+
+
         });
     </script>
+
 </body>
 
 </html>
