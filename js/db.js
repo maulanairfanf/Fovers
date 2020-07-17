@@ -26,7 +26,7 @@ function Delete(data){
       var tx = db.transaction("countrys", "readwrite");
       var store = tx.objectStore("countrys");
       console.log(data);
-      store.delete(data, data.competitions[0].area.id);
+      store.delete(data);
       return tx.complete;
     })
     .then(function(){

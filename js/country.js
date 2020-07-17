@@ -178,9 +178,6 @@ function getSavedCountryById() {
         var button = `
             <a class="waves-effect waves-light btn-large col s12 m6" href="./index.html#favorite"><i
             class="material-icons left">arrow_back</i>Back To Favorite</a>
-            <a class="waves-effect waves-light btn-large col s12 m6" id="delete"><i
-                    class="material-icons left">arrow_back</i>delete</a>
-            <a href=""></a>
         `;
         var countryHTML = ""
         country.competitions.forEach(function (countrys) {
@@ -198,18 +195,6 @@ function getSavedCountryById() {
         document.getElementById("body-render-liga").innerHTML = countryHTML;
 
     })
-    btnDelete.onclick = function () {
-        console.log(id);
-        console.log("Tombol delete di klik.");
-        item.then(function (country) {
-
-                Delete(country)
-
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
-    }
     remove();
 }
 
@@ -236,13 +221,6 @@ function remove() {
     var loader = document.getElementById("loader");
     loader.remove();
 }
-
-// function delete(){
-//     var button = 
-// }
-
-
-
 
 
 

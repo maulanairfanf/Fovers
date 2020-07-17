@@ -67,6 +67,10 @@
             <a class="waves-effect waves-light btn-large col s12 m6" id="back" href="index.html"><i
                     class="material-icons left">arrow_back</i>Back To Home</a>
             <a href=""></a>
+            <br>
+            <a class="waves-effect waves-light btn-large col s12 m6" id="delete" href="index.html#favorite"><i
+                    class="material-icons left">arrow_back</i>delete</a>
+            <a href=""></a>
 
         </div>
     </div>
@@ -85,6 +89,7 @@
         document.addEventListener("DOMContentLoaded", function () {
             var urlParams = new URLSearchParams(window.location.search);
             var isFromSaved = urlParams.get("saved");
+            var idParam = urlParams.get("id");
             var btnBack = document.getElementById("back")
             var btnSave = document.getElementById("add");
             var btnDelete = document.getElementById("delete");
@@ -95,7 +100,7 @@
                 getSavedCountryById();
             } else {
                 var item = getLigaByName();
-
+                btnDelete.style.display = 'none';
             }
 
             btnSave.onclick = function () {
@@ -107,8 +112,17 @@
                 })
             }
 
+            btnDelete.onclick = function () {
+
+                console.log("Tombol delete d klik.");
+
+                Delete(parseInt(idParam));
+            }
 
         });
+
+
+        
     </script>
 
 </body>
