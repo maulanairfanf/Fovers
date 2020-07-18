@@ -129,9 +129,6 @@ function getLigaByName() {
                 resolve(data);
                 remove();
             }).catch(function (error) {
-                // M.toast({
-                //     html: 'Failed To Fetch Data'
-                // })
             });
     })
 }
@@ -164,10 +161,9 @@ function getSavedCountrys() {
         });
 
         document.getElementById("body-render").innerHTML = countryHTML;
+        remove();
 
     })
-    remove();
-
 }
 
 function getSavedCountryById() {
@@ -221,30 +217,3 @@ function remove() {
     var loader = document.getElementById("loader");
     loader.remove();
 }
-
-
-
-// function getLigaByName() {
-//     var urlParamsTeams = new URLSearchParams(window.location.search);
-//     var ParentLigaIdParam = urlParamsTeams.get("id");
-
-//     fetch(base_url_team + ParentLigaIdParam + "/standings", {
-//             method: "GET",
-//             withCredentials: true,
-//             headers: {
-//                 "X-Auth-Token": "75ef90f669f94902b8d8408d3cd4289c"
-//             }
-//         })
-//         .then(status)
-//         .then(json)
-//         .then(function (data) {
-//             console.log(data);
-//             var LigaHTML = ""
-//             data.standings.table.forEach(function (team) {
-//                 LigaHTML += `
-//             <div class="country-name black-text">${team.team.name}<i class="material-icons right">details</i></div>
-//             `
-//             })
-//             document.getElementById("body-render-team").innerHTML = LigaHTML;
-//         }).catch(error);
-// }

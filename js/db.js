@@ -20,18 +20,16 @@ function saveForLater(data) {
     });
 }
 
-function Delete(data){
+function Delete(data) {
   dbPromised
-    .then(function (db){
+    .then(function (db) {
       var tx = db.transaction("countrys", "readwrite");
       var store = tx.objectStore("countrys");
       console.log(data);
       store.delete(data);
       return tx.complete;
     })
-    .then(function(){
+    .then(function () {
       console.log("country berhasil di hapus.");
     })
 }
-
-

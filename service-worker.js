@@ -13,6 +13,8 @@ let assetsCache = [
     "/js/navbar.js",
     "/js/sw.js",
     "/js/country.js",
+    "/js/db.js",
+    "/js/fromSave.js",
     // css
     "/css/materialize.css",
     "/css/materialize.min.css",
