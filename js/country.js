@@ -128,8 +128,7 @@ function getLigaByName() {
                 // document.getElementById("body-render-country-liga").innerHTML = country;
                 resolve(data);
                 remove();
-            }).catch(function (error) {
-            });
+            }).catch(function (error) {});
     })
 }
 
