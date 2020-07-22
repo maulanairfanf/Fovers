@@ -80,52 +80,11 @@
     <script type="text/javascript" src="https://unpkg.com/snarkdown@1.0.2/dist/snarkdown.umd.js"></script>
     <script type="text/javascript" src="/js/materialize.min.js"></script>
     <script type="text/javascript" src="js/country.js"></script>
-    <script type="text/javascript" src="/js/sw.js"></script>
-    <script type="text/javascript" src="js/navbar.js"></script>
+    <!-- <script type="text/javascript" src="/js/sw.js"></script> -->
+    <!-- <script type="text/javascript" src="js/navbar.js"></script> -->
     <script type="text/javascript" src="js/idb.js"></script>
     <script type="text/javascript" src="js/db.js"></script>
     <script type="text/javascript" src="js/fromSave.js"></script>
-    <!-- <script>
-        document.addEventListener("DOMContentLoaded", function () {
-
-            var urlParams = new URLSearchParams(window.location.search);
-            var isFromSaved = urlParams.get("saved");
-            var idParam = urlParams.get("id");
-            var btnBack = document.getElementById("back")
-            var btnSave = document.getElementById("add");
-            var btnDelete = document.getElementById("delete");
-
-            if (isFromSaved) {
-                btnBack.style.display = 'none';
-                btnSave.style.display = 'none';
-                getSavedCountryById();
-            } else {
-                var item = getLigaByName();
-                btnDelete.style.display = 'none';
-            }
-
-            btnSave.onclick = function () {
-                console.log("Tombol add di klik.");
-                item.then(function (country) {
-
-                    saveForLater(country)
-
-                })
-            }
-
-            btnDelete.onclick = function () {
-
-                console.log("Tombol delete d klik.");
-
-                Delete(parseInt(idParam));
-            }
-
-        });
-
-
-        
-    </script> -->
-
 </body>
 
 </html>

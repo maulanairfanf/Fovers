@@ -63,6 +63,7 @@ function getCountrys() {
         }).catch(error);
 }
 
+
 function getLigaByName() {
     return new Promise(function (resolve, reject) {
 
@@ -74,11 +75,6 @@ function getLigaByName() {
             caches.match(base_url_liga + ParentAreaIdParam).then(function (response) {
                 if (response) {
                     response.json().then(function (data) {
-                        var country = `
-                    <div class="center" id="negara"> ${data.competitions[0].area.name}</div>
-                    <img class="responsive-img" id="bendera" alt="Flag"
-                    src="${data.competitions[0].area.ensignUrl}">
-                    `;
                         var countryHTML = ""
                         data.competitions.forEach(function (liga) {
                             countryHTML += `
@@ -91,7 +87,6 @@ function getLigaByName() {
                             `
                         })
                         document.getElementById("body-render-liga").innerHTML = countryHTML;
-                        // document.getElementById("body-render-country-liga").innerHTML = country;
                         resolve(data);
                     })
                 }
@@ -125,10 +120,11 @@ function getLigaByName() {
                     `
                 })
                 document.getElementById("body-render-liga").innerHTML = countryHTML;
-                // document.getElementById("body-render-country-liga").innerHTML = country;
                 resolve(data);
                 remove();
-            }).catch(function (error) {});
+            }).catch(function (error) {
+                console.log(error);
+            });
     })
 }
 
@@ -209,8 +205,6 @@ function getById(id) {
             })
     });
 }
-
-
 
 function remove() {
     var loader = document.getElementById("loader");
