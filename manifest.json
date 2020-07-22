@@ -1,5 +1,6 @@
 {
     "name": "Fovers",
+    "gcm_sender_id": "954353441504",
     "short_name": "Fovers",
     "description": "Website FootBall Lovers",
     "start_url": "/index.html",
