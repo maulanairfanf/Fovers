@@ -103,11 +103,6 @@ function getLigaByName() {
             .then(status)
             .then(json)
             .then(function (data) {
-                var country = `
-            <div class="center" id="negara"> ${data.competitions[0].area.name}</div>
-            <img class="responsive-img" id="bendera" alt="Flag"
-            src="${data.competitions[0].area.ensignUrl}">
-            `;
                 var countryHTML = ""
                 data.competitions.forEach(function (liga) {
                     countryHTML += `

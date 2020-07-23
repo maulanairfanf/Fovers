@@ -1,4 +1,4 @@
-const CACHE_NAME = "v0";
+const CACHE_NAME = "v1";
 let assetsCache = [
     "/",
     "/index.html",

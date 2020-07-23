@@ -99,12 +99,19 @@
                     }
 
                     if (('PushManager' in window)) {
-                        navigator.serviceWorker.getRegistration().then(function (registration) {
+                        console.log("test")
+                        navigator.serviceWorker.ready.then(function (registration) {
+                            console.log("test2")
                             registration.pushManager.subscribe({
+
                                 userVisibleOnly: true,
-                                applicationServerKey: urlBase64ToUint8Array("BNYUluCTGjg3oT1aI8FfgWsRKx7BA8zF3tnZs7usimNYgtKYPChUD_WNyLRwf9-YTfNfFf2EnZnuygPmRAP0nwUBNYUluCTGjg3oT1aI8FfgWsRKx7BA8zF3tnZs7usimNYgtKYPChUD_WNyLRwf9-YTfNfFf2EnZnuygPmRAP0nwU")
+                                applicationServerKey: urlBase64ToUint8Array(
+                                    "BNYUluCTGjg3oT1aI8FfgWsRKx7BA8zF3tnZs7usimNYgtKYPChUD_WNyLRwf9-YTfNfFf2EnZnuygPmRAP0nwUBNYUluCTGjg3oT1aI8FfgWsRKx7BA8zF3tnZs7usimNYgtKYPChUD_WNyLRwf9-YTfNfFf2EnZnuygPmRAP0nwU"
+                                )
+
 
                             }).then(function (subscribe) {
+                                console.log("test3")
                                 console.log('Berhasil melakukan subscribe dengan endpoint: ',
                                     subscribe.endpoint);
                                 console.log('Berhasil melakukan subscribe dengan p256dh key: ',
@@ -118,8 +125,11 @@
                                 console.error('Tidak dapat melakukan subscribe ', e.message);
                             });
                         });
+                    } else {
+                        console.log("error")
                     }
                 });
+
             }
         }
 
