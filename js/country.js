@@ -1,6 +1,6 @@
 var base_url_areas = "http://api.football-data.org/v2/areas/";
 var base_url_liga = "https://api.football-data.org/v2/competitions?areas="
-// var base_url_team = "https://api.football-data.org/v2/competitions/"
+var base_url_team = "https://api.football-data.org/v2/competitions/"
 
 function status(response) {
     if (response.status !== 200) {
@@ -122,6 +122,47 @@ function getLigaByName() {
             });
     })
 }
+
+
+// function getTeams() {
+//     return new Promise(function (resolve, reject) {
+
+
+//         var urlParamsLiga = new URLSearchParams(window.location.search);
+//         var ParentLigaIdParam = urlParamsLiga.get("id");
+
+//         fetch(base_url_team + "2001" + "/standings", {
+//                 method: "GET",
+//                 withCredentials: true,
+//                 headers: {
+//                     "X-Auth-Token": "75ef90f669f94902b8d8408d3cd4289c"
+//                 }
+//             })
+//             .then(status)
+//             .then(json)
+//             .then(function (data) {
+//                 console.log(data);
+//                 var countryHTML = ""
+//                 data.standings.table.forEach(function (liga) {
+//                     countryHTML += `
+//                     <div class="card">
+//                         <div class="country-name black-text card-title">${liga.team.name}</div>
+//                         <div class="card-content">
+                        
+//                         </div>
+//                     </div>
+//                     `
+//                 })
+//                 console.log(data);
+//                 document.getElementById("body-render-liga").innerHTML = countryHTML;
+//                 resolve(data);
+//                 remove();
+//             }).catch(function (error) {
+//                 console.log(error);
+//             });
+//     })
+
+// }
 
 
 

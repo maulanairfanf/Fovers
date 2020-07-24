@@ -77,7 +77,7 @@
         }
         // Register service worker
         function registerServiceWorker() {
-            return navigator.serviceWorker.register('./js/sw.js')
+            return navigator.serviceWorker.register('./service-worker.js')
                 .then(function (registration) {
                     console.log('Registrasi service worker berhasil.');
                     return registration;
@@ -98,36 +98,9 @@
                         return;
                     }
 
-                    if (('PushManager' in window)) {
-                        console.log("test")
-                        navigator.serviceWorker.ready.then(function (registration) {
-                            console.log("test2")
-                            registration.pushManager.subscribe({
-
-                                userVisibleOnly: true,
-                                applicationServerKey: urlBase64ToUint8Array(
-                                    "BNYUluCTGjg3oT1aI8FfgWsRKx7BA8zF3tnZs7usimNYgtKYPChUD_WNyLRwf9-YTfNfFf2EnZnuygPmRAP0nwUBNYUluCTGjg3oT1aI8FfgWsRKx7BA8zF3tnZs7usimNYgtKYPChUD_WNyLRwf9-YTfNfFf2EnZnuygPmRAP0nwU"
-                                )
-
-
-                            }).then(function (subscribe) {
-                                console.log("test3")
-                                console.log('Berhasil melakukan subscribe dengan endpoint: ',
-                                    subscribe.endpoint);
-                                console.log('Berhasil melakukan subscribe dengan p256dh key: ',
-                                    btoa(String.fromCharCode.apply(
-                                        null, new Uint8Array(subscribe.getKey('p256dh'))
-                                    )));
-                                console.log('Berhasil melakukan subscribe dengan auth key: ',
-                                    btoa(String.fromCharCode.apply(
-                                        null, new Uint8Array(subscribe.getKey('auth')))));
-                            }).catch(function (e) {
-                                console.error('Tidak dapat melakukan subscribe ', e.message);
-                            });
-                        });
-                    } else {
-                        console.log("error")
-                    }
+                    navigator.serviceWorker.getRegistration().then(function (reg) {
+                        reg.showNotification('Notifikasi diijinkan!');
+                    });
                 });
 
             }
@@ -145,6 +118,10 @@
             }
             return outputArray;
         }
+
+        //     document.addEventListener("DOMContentLoaded", function () {
+        //   getTeams();
+        // });
     </script>
 </body>
 
