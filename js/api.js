@@ -78,12 +78,9 @@ function getLigaByName() {
                         var countryHTML = ""
                         data.competitions.forEach(function (liga) {
                             countryHTML += `
-                            <div class="card">
-                                <div class="country-name black-text card-title">${liga.name}</div>
-                                <div class="card-content">
-                                
-                                </div>
-                            </div>
+                            <a href="./team.html?id=${liga.id}">
+                            <div class="country-name black-text">${liga.name}<i class="material-icons right">details</i></div>
+                            </a>
                             `
                         })
                         document.getElementById("body-render-liga").innerHTML = countryHTML;
@@ -106,12 +103,9 @@ function getLigaByName() {
                 var countryHTML = ""
                 data.competitions.forEach(function (liga) {
                     countryHTML += `
-                    <div class="card">
-                        <div class="country-name black-text card-title">${liga.name}</div>
-                        <div class="card-content">
-                        
-                        </div>
-                    </div>
+                    <a href="./team.html?id=${liga.id}">
+                    <div class="country-name black-text">${liga.name}<i class="material-icons right">details</i></div>
+                    </a>
                     `
                 })
                 document.getElementById("body-render-liga").innerHTML = countryHTML;
@@ -124,45 +118,61 @@ function getLigaByName() {
 }
 
 
-// function getTeams() {
-//     return new Promise(function (resolve, reject) {
+function getTeams() {
+    return new Promise(function (resolve, reject) {
 
 
-//         var urlParamsLiga = new URLSearchParams(window.location.search);
-//         var ParentLigaIdParam = urlParamsLiga.get("id");
+        var urlParamsLiga = new URLSearchParams(window.location.search);
+        var ParentLigaIdParam = urlParamsLiga.get("id");
 
-//         fetch(base_url_team + "2001" + "/standings", {
-//                 method: "GET",
-//                 withCredentials: true,
-//                 headers: {
-//                     "X-Auth-Token": "75ef90f669f94902b8d8408d3cd4289c"
-//                 }
-//             })
-//             .then(status)
-//             .then(json)
-//             .then(function (data) {
-//                 console.log(data);
-//                 var countryHTML = ""
-//                 data.standings.table.forEach(function (liga) {
-//                     countryHTML += `
-//                     <div class="card">
-//                         <div class="country-name black-text card-title">${liga.team.name}</div>
-//                         <div class="card-content">
+        fetch(base_url_team + ParentLigaIdParam + "/standings", {
+                method: "GET",
+                withCredentials: true,
+                headers: {
+                    "X-Auth-Token": "75ef90f669f94902b8d8408d3cd4289c"
+                }
+            })
+            .then(status)
+            .then(json)
+            .then(function (data) {
+                console.log(data);
+                var teamHTML = ""
+                data.standings[0].table.forEach(function (team) {
+                    teamHTML += `
+                      <tr>
+                        <td>${team.position}</td>
+                        <td class="valign-wrapper center-align">
                         
-//                         </div>
-//                     </div>
-//                     `
-//                 })
-//                 console.log(data);
-//                 document.getElementById("body-render-liga").innerHTML = countryHTML;
-//                 resolve(data);
-//                 remove();
-//             }).catch(function (error) {
-//                 console.log(error);
-//             });
-//     })
+                            <img alt="${team.team.name}" src="${team.team.crestUrl}" class="responsive-img">
+                            <span>${team.team.name}</span>
+                        </td>
+                        <td>${team.playedGames}</td>
+                        <td>${team.won}</td>
+                        <td>${team.draw}</td>
+                        <td>${team.lost}</td>
+                        <td>${team.points}</td>
+                      </tr>
+                    `
+                })
+                document.getElementById("body-render-team").innerHTML = teamHTML;
+                resolve(data);
+                remove();
+            }).catch(function (error) {
+                console.log(error);
+            });
+        var buttonHTML = `
+            <a class="waves-effect waves-light btn" id="button-team" onclick="window.history.back()">
+                <i class="material-icons left">arrow_back</i>Back
+            </a>
+            `
+        document.getElementById("body-render-button").innerHTML = buttonHTML;
 
-// }
+    })
+
+
+
+
+}
 
 
 
@@ -207,15 +217,12 @@ function getSavedCountryById() {
             class="material-icons left">arrow_back</i>Back To Favorite</a>
         `;
         var countryHTML = ""
-        country.competitions.forEach(function (countrys) {
+        country.competitions.forEach(function (liga) {
             countryHTML +=
                 `
-                <div class="card">
-                    <div class="country-name black-text card-title">${countrys.name}</div>
-                    <div class="card-content">
-                    
-                    </div>
-                </div>
+                <a href="./team.html?id=${liga.id}">
+                            <div class="country-name black-text">${liga.name}<i class="material-icons right">details</i></div>
+                            </a>
             `
         })
         document.getElementById("body-render-country-liga").innerHTML = button;

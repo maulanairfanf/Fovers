@@ -1,7 +1,6 @@
 /* Home */
 
-.home {
-}
+.home {}
 
 .home .row {
     display: flex;
@@ -22,34 +21,23 @@
     color: #c5cae9;
 }
 
-.home h3{
+.home h3 {
     padding-bottom: 2%;
     border-bottom: 1px solid #c5cae9;
 }
 
 
 /* liga */
-.liga .center a{
+.liga .center a {
     /* width: 30%; */
     margin-top: 1%;
 }
 
-#negara{
-    padding-bottom: 2%;
-    border-bottom: 1px solid #c5cae9;
-}
-
-#bendera{
-    width: 30%;
-    margin-top: 3%;
-    margin-bottom: 2%;
-}
-
-.liga .card{
+.liga .card {
     border: 2px soldi black;
 }
 
-.liga .row{
+.liga .row {
     display: flex;
     flex-wrap: wrap;
     margin: 5px;
@@ -59,12 +47,29 @@
 
 
 /* About */
-.about{
+.about {
     margin-top: 5%;
 }
 
-.about .card{
+.about .card {
     border: none;
     outline: none;
     box-shadow: none;
 }
+
+/* team */
+tr .responsive-img {
+    width: 30px;
+    height: 30px;
+    padding-right: 5px;
+
+}
+
+#button-team{
+    width: 30%;
+}
+
+#body-render-button{
+    width: 100%;
+}
+

@@ -1,7 +1,9 @@
-const CACHE_NAME = "v1";
+const CACHE_NAME = "v0";
 let assetsCache = [
     "/",
     "/index.html",
+    "/liga.html",
+    "/team.html",
     // "/render/liga.html",
     "/navbar.html",
     "/pages/home.html",
@@ -11,8 +13,8 @@ let assetsCache = [
     "/js/materialize.js",
     "/js/materialize.min.js",
     "/js/navbar.js",
-    "/js/sw.js",
-    "/js/country.js",
+    "/js/push.js",
+    "/js/api.js",
     "/js/db.js",
     "/js/fromSave.js",
     // css
@@ -65,8 +67,10 @@ self.addEventListener("fetch", function (event) {
         );
     } else {
         event.respondWith(
-            caches.match(event.request, { ignoreSearch: true }).then(function(response) {
-                return response || fetch (event.request);
+            caches.match(event.request, {
+                ignoreSearch: true
+            }).then(function (response) {
+                return response || fetch(event.request);
             })
         )
     }

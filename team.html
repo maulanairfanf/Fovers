@@ -28,26 +28,32 @@
     <div class="progress" id="loader">
         <div class="indeterminate" id=""></div>
     </div>
+
     <div class="liga container">
 
-        <div class="row center" id="body-render-liga">
+        <div class="row center">
+            <table class="responsive-table">
+                <thead>
+                    <tr>
+                        <th>Position</th>
+                        <th>Name Team</th>
+                        <th>Match</th>
+                        <th>Win</th>
+                        <th>Draw</th>
+                        <th>Lose</th>
+                        <th>Points</th>
+                    </tr>
+                </thead>
+                <tbody id="body-render-team">
 
+                </tbody>
+            </table>
+            <div id="body-render-button">
+                
+            </div>
         </div>
-        <div class="center" id="body-render-country-liga"></div>
-        <div class="center" id="button">
-            <a class="waves-effect waves-light btn-large col s12 m6" id="add"><i class="material-icons left">add</i>Add
-                to
-                favourite</a>
-            <br>
-            <a class="waves-effect waves-light btn-large col s12 m6" id="back" href="index.html"><i
-                    class="material-icons left">arrow_back</i>Back To Home</a>
-            <a href=""></a>
-            <br>
-            <a class="waves-effect waves-light btn-large col s12 m6" id="delete" href="index.html#favorite"><i
-                    class="material-icons left">delete</i>delete</a>
-            <a href=""></a>
 
-        </div>
+        
     </div>
 
 
@@ -57,7 +63,11 @@
     <script type="text/javascript" src="js/api.js"></script>
     <script type="text/javascript" src="js/idb.js"></script>
     <script type="text/javascript" src="js/db.js"></script>
-    <script type="text/javascript" src="js/fromSave.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+            getTeams();
+        })
+    </script>
 </body>
 
 </html>
