@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var btnBack = document.getElementById("back")
     var btnSave = document.getElementById("add");
     var btnDelete = document.getElementById("delete");
+    var btnFavorite = document.getElementById("btnBackFavorite");
 
     if (isFromSaved) {
         btnBack.style.display = 'none';
@@ -13,11 +14,11 @@ document.addEventListener("DOMContentLoaded", function () {
         getSavedCountryById();
     } else {
         var item = getLigaByName();
+        btnFavorite.style.display = 'none';
         btnDelete.style.display = 'none';
     }
 
     btnSave.onclick = function () {
-        console.log("Tombol add di klik.");
         item.then(function (country) {
 
             saveForLater(country)
@@ -26,10 +27,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     btnDelete.onclick = function () {
-
-        console.log("Tombol delete d klik.");
-
         Delete(parseInt(idParam));
     }
+
+
 
 });

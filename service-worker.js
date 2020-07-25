@@ -1,4 +1,4 @@
-const CACHE_NAME = "v0";
+const CACHE_NAME = "v1";
 let assetsCache = [
     "/",
     "/index.html",
@@ -16,6 +16,7 @@ let assetsCache = [
     "/js/push.js",
     "/js/api.js",
     "/js/db.js",
+    "/js/idb.js",
     "/js/fromSave.js",
     // css
     "/css/materialize.css",
@@ -29,6 +30,7 @@ let assetsCache = [
     "https://fonts.googleapis.com/icon?family=Material+Icons",
     "https://fonts.gstatic.com/s/materialicons/v52/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2",
     "https://fonts.gstatic.com/s/materialicons/v53/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2",
+    "https://api.football-data.org/v2/",
     // assets
     "/assets/stadium1.png",
     "/assets/stadium2.png",
@@ -55,25 +57,31 @@ self.addEventListener("install", function (event) {
 
 
 self.addEventListener("fetch", function (event) {
-    var base_url = "http://api.football-data.org/v2/";
-    if (event.request.url.indexOf(base_url) > -1) {
-        event.respondWith(
-            caches.open(CACHE_NAME).then(function (cache) {
-                return fetch(event.request).then(function (response) {
-                    cache.put(event.request.url, response.clone());
-                    return response;
-                })
+    event.respondWith(
+        caches
+        .match(event.request, {
+            cacheName: CACHE_NAME
+        })
+        .then(function (response) {
+            if (response) {
+                console.log("ServiceWorker : use assets from cache ", response.url);
+                return response;
+            }
+
+            console.log(
+                "ServiceWorker : load assets form server ",
+                event.request.url
+            );
+            return fetch(event.request, {
+                method: "GET",
+                withCredentials: true,
+                mode: "no-cors",
+                headers: {
+                    "X-Auth-Token": "75ef90f669f94902b8d8408d3cd4289c"
+                }
             })
-        );
-    } else {
-        event.respondWith(
-            caches.match(event.request, {
-                ignoreSearch: true
-            }).then(function (response) {
-                return response || fetch(event.request);
-            })
-        )
-    }
+        })
+    );
 });
 
 
@@ -101,7 +109,6 @@ self.addEventListener('push', function (event) {
     }
     var options = {
         body: body,
-        icon: 'img/notification.png',
         vibrate: [100, 50, 100],
         data: {
             dateOfArrival: Date.now(),
