@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (this.readyState === 4) {
+
                 const content = document.querySelector("#body-render");
 
                 if (page === "home") {
@@ -64,4 +65,6 @@ document.addEventListener("DOMContentLoaded", function () {
         xhttp.open("GET", "pages/" + page + ".html", true);
         xhttp.send();
     }
+
+
 });

@@ -11,16 +11,16 @@ webPush.setVapidDetails(
     vapidKeys.publicKey,
     vapidKeys.privateKey
 )
-var pushSubscription = {
-    "endpoint": "https://fcm.googleapis.com/fcm/send/clSdIHYL09k:APA91bFvb7KCAVcS4N4HmLhnVmNLmTgZqXiU3tXK_OWFP44_r8OqDdLet8bGbrCRjRq7Ww-wPqmUK3A40C24v-H6jZ09JRTl7o2BBYL5FDu2Rr2aaDodUD1j3XY3VXKjaBsjCXoX8XUE",
+const pushSubscription = {
+    "endpoint": "https://fcm.googleapis.com/fcm/send/dgVgtDrbk6s:APA91bFJEWAYcp_NJLk56E-8NqxUAdAuhGtUQV1VNt6kQkqkWtDv-d-QHqsfNUv3jOBTPLa_scxZLWBH-LmgVnplEgg3FWLTCA-rT5huCGxGu_JcMazjpjHN_fCOUz12MBx5DkhqBuyi",
     "keys": {
-        "p256dh": "BB6YyOfoT6yFhjlT0LB4s2F1niZ7vU3aqky2MlWa8824z+oCoaMDcRCf1UOWqI7I5AqztlkIl6Yx3ulG02m92jE=",
-        "auth": "3GVvV3jN/ZZOz2tiW3KK9A=="
+        "p256dh": "BA1G/68m58/kOC5XNWB1BQgGFKqsMlJRRCBh6RhqDGtWhdTOEKM1YuwXjd2oO6irtflcWzaF2ldyopiU53Aga4w=",
+        "auth": "QAG/EyOPgZ8pRxLzd0Hdtw=="
     }
 };
-var payload = 'Selamat! Aplikasi Anda sudah dapat menerima push notifikasi!';
+const payload = 'Selamat! Aplikasi Anda sudah dapat menerima push notifikasi!';
 
-var options = {
+const options = {
     gcmAPIKey: '954353441504',
     TTL: 60
 };

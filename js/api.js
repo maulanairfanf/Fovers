@@ -1,4 +1,4 @@
-const base_url_areas = "http://api.football-data.org/v2/areas/";
+const base_url_areas = "https://api.football-data.org/v2/areas/";
 const base_url_liga = "https://api.football-data.org/v2/competitions?areas="
 const base_url_team = "https://api.football-data.org/v2/competitions/"
 
@@ -29,7 +29,7 @@ function getCountrys() {
             caches.match(base_url_areas).then(function (response) {
                 if (response) {
                     response.json().then(function (data) {
-                        var countryHTML = "";
+                        let countryHTML = "";
                         data.areas.forEach(function (country) {
                             countryHTML += `
                             <div class="col s12 m6 l4">
@@ -57,7 +57,7 @@ function getCountrys() {
             .then(status)
             .then(json)
             .then(function (data) {
-                var countryHTML = "";
+                let countryHTML = "";
                 data.areas.forEach(function (country) {
                     countryHTML += `
                     <div class="col s12 m6 l4">
@@ -79,14 +79,14 @@ function getLigaByName() {
     return new Promise(function (resolve, reject) {
 
 
-        var urlParamsLiga = new URLSearchParams(window.location.search);
-        var ParentAreaIdParam = urlParamsLiga.get("id");
+        const urlParamsLiga = new URLSearchParams(window.location.search);
+        const ParentAreaIdParam = urlParamsLiga.get("id");
 
         if ('caches' in window) {
             caches.match(base_url_liga + ParentAreaIdParam).then(function (response) {
                 if (response) {
                     response.json().then(function (data) {
-                        var countryHTML = ""
+                        let countryHTML = ""
                         data.competitions.forEach(function (liga) {
                             countryHTML += `
                             <div class="col s12 m6 l4">
@@ -114,7 +114,7 @@ function getLigaByName() {
             .then(status)
             .then(json)
             .then(function (data) {
-                var countryHTML = ""
+                let countryHTML = ""
                 data.competitions.forEach(function (liga) {
                     countryHTML += `
                     <div class="col s12 m6 l4">
@@ -138,21 +138,21 @@ function getTeams() {
     return new Promise(function (resolve, reject) {
 
 
-        var urlParamsLiga = new URLSearchParams(window.location.search);
-        var ParentLigaIdParam = urlParamsLiga.get("id");
+        const urlParamsLiga = new URLSearchParams(window.location.search);
+        const ParentLigaIdParam = urlParamsLiga.get("id");
 
         if ('caches' in window) {
             caches.match(base_url_team + ParentLigaIdParam + "/standings").then(function (response) {
                 if (response) {
                     response.json().then(function (data) {
-                        var teamHTML = ""
+                        let teamHTML = ""
                         data.standings[0].table.forEach(function (team) {
                             teamHTML += `
                       <tr>
                         <td>${team.position}</td>
                         <td class="valign-wrapper center-align">
                         
-                            <img alt="${team.team.name}" src="${team.team.crestUrl}" class="responsive-img">
+                            <img alt="lambang" src="${team.team.crestUrl}" class="responsive-img">
                             <span>${team.team.name}</span>
                         </td>
                         <td>${team.playedGames}</td>
@@ -182,14 +182,14 @@ function getTeams() {
             .then(status)
             .then(json)
             .then(function (data) {
-                var teamHTML = ""
+                let teamHTML = ""
                 data.standings[0].table.forEach(function (team) {
                     teamHTML += `
                       <tr>
                         <td>${team.position}</td>
                         <td class="valign-wrapper center-align">
                         
-                            <img alt="${team.team.name}" src="${team.team.crestUrl}" class="responsive-img">
+                            <img alt="lambang" src="${team.team.crestUrl}" class="responsive-img">
                             <span>${team.team.name}</span>
                         </td>
                         <td>${team.playedGames}</td>
@@ -223,8 +223,8 @@ function getAll() {
     return new Promise(function (resolve, reject) {
         dbPromised
             .then(function (db) {
-                var tx = db.transaction("countrys", "readonly");
-                var store = tx.objectStore("countrys");
+                const tx = db.transaction("countrys", "readonly");
+                const store = tx.objectStore("countrys");
                 return store.getAll();
             })
             .then(function (countrys) {
@@ -235,7 +235,7 @@ function getAll() {
 
 function getSavedCountrys() {
     getAll().then(function (countrys) {
-        var countryHTML = "";
+        let countryHTML = "";
         countrys.forEach(function (country) {
             countryHTML += `
             <div class="col s12 m6 l4">
@@ -254,11 +254,11 @@ function getSavedCountrys() {
 }
 
 function getSavedCountryById() {
-    var urlParamsLiga = new URLSearchParams(window.location.search);
-    var idParam = urlParamsLiga.get("id");
+    const urlParamsLiga = new URLSearchParams(window.location.search);
+    const idParam = urlParamsLiga.get("id");
 
     getById(parseInt(idParam)).then(function (country) {
-        var countryHTML = ""
+        let countryHTML = ""
         country.competitions.forEach(function (liga) {
             countryHTML +=
                 `
@@ -279,8 +279,8 @@ function getById(id) {
     return new Promise(function (resolve, reject) {
         dbPromised
             .then(function (db) {
-                var tx = db.transaction("countrys", "readonly");
-                var store = tx.objectStore("countrys");
+                const tx = db.transaction("countrys", "readonly");
+                const store = tx.objectStore("countrys");
                 return store.get(id);
             })
             .then(function (country) {

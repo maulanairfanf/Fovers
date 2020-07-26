@@ -1,5 +1,5 @@
-var dbPromised = idb.open("Football-Data", 1, function (upgradeDb) {
-  var countryObjectStore = upgradeDb.createObjectStore("countrys");
+const dbPromised = idb.open("Football-Data", 1, function (upgradeDb) {
+  const countryObjectStore = upgradeDb.createObjectStore("countrys");
   countryObjectStore.createIndex("liga", "liga", {
     unique: false
   });
@@ -9,8 +9,8 @@ var dbPromised = idb.open("Football-Data", 1, function (upgradeDb) {
 function saveForLater(data) {
   dbPromised
     .then(function (db) {
-      var tx = db.transaction("countrys", "readwrite");
-      var store = tx.objectStore("countrys");
+      const tx = db.transaction("countrys", "readwrite");
+      const store = tx.objectStore("countrys");
       console.log(data);
       store.put(data, data.competitions[0].area.id);
       return tx.complete;
@@ -23,8 +23,8 @@ function saveForLater(data) {
 function Delete(data) {
   dbPromised
     .then(function (db) {
-      var tx = db.transaction("countrys", "readwrite");
-      var store = tx.objectStore("countrys");
+      const tx = db.transaction("countrys", "readwrite");
+      const store = tx.objectStore("countrys");
       console.log(data);
       store.delete(data);
       return tx.complete;
