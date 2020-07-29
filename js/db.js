@@ -16,6 +16,7 @@ function saveForLater(data) {
       return tx.complete;
     })
     .then(function () {
+      M.toast({html: 'Berhasil Add to Favorite'})
       console.log("country berhasil di simpan.");
     });
 }
@@ -30,6 +31,7 @@ function Delete(data) {
       return tx.complete;
     })
     .then(function () {
+      M.toast({html: 'Berhasil Delete'})
       console.log("country berhasil di hapus.");
     })
 }
