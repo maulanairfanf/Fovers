@@ -19,6 +19,19 @@ function error(error) {
     console.log("error :  " + error);
 }
 
+const fetchApi = function (url) {
+
+    return fetch(url, {
+
+        headers: {
+
+            'X-Auth-Token': '75ef90f669f94902b8d8408d3cd4289c'
+
+        }
+
+    });
+
+};
 
 function getCountrys() {
     return new Promise(function (resolve, reject) {
@@ -46,14 +59,8 @@ function getCountrys() {
             })
         }
 
-        fetch(base_url_areas, {
-                method: "GET",
-                withCredentials: true,
 
-                headers: {
-                    "X-Auth-Token": "75ef90f669f94902b8d8408d3cd4289c"
-                }
-            })
+        fetchApi(base_url_areas)
             .then(status)
             .then(json)
             .then(function (data) {
@@ -103,14 +110,7 @@ function getLigaByName() {
             })
         }
 
-        fetch(base_url_liga + ParentAreaIdParam, {
-                method: "GET",
-                withCredentials: true,
-
-                headers: {
-                    "X-Auth-Token": "75ef90f669f94902b8d8408d3cd4289c"
-                }
-            })
+        fetchApi(base_url_liga + ParentAreaIdParam)
             .then(status)
             .then(json)
             .then(function (data) {
@@ -171,14 +171,8 @@ function getTeams() {
             })
         }
 
-        fetch(base_url_team + ParentLigaIdParam + "/standings", {
-                method: "GET",
-                withCredentials: true,
 
-                headers: {
-                    "X-Auth-Token": "75ef90f669f94902b8d8408d3cd4289c"
-                }
-            })
+        fetchApi(base_url_team + ParentLigaIdParam + "/standings")
             .then(status)
             .then(json)
             .then(function (data) {
