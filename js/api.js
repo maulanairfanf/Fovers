@@ -20,17 +20,11 @@ function error(error) {
 }
 
 const fetchApi = function (url) {
-
     return fetch(url, {
-
         headers: {
-
             'X-Auth-Token': '75ef90f669f94902b8d8408d3cd4289c'
-
         }
-
     });
-
 };
 
 function getCountrys() {
