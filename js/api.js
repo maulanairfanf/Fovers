@@ -41,7 +41,7 @@ function getCountrys() {
                             countryHTML += `
                             <div class="col s12 m6 l4">
                         <a href="./liga.html?id=${country.id}">
-                        <div class="country-name black-text">${country.name}<i class="material-icons right">details</i></div>
+                        <div class="country-name black-text">${country.name}<i class="material-icons right">navigate_next</i></div>
                         </a>
                         </div>
                         `
@@ -63,7 +63,7 @@ function getCountrys() {
                     countryHTML += `
                     <div class="col s12 m6 l4">
                     <a href="./liga.html?id=${country.id}">
-                    <div class="country-name black-text">${country.name}<i class="material-icons right">details</i></div>
+                    <div class="country-name black-text">${country.name}<i class="material-icons right">navigate_next</i></div>
                     </a>
                     </div>
             `
@@ -92,7 +92,7 @@ function getLigaByName() {
                             countryHTML += `
                             <div class="col s12 m6 l4">
                             <a href="./team.html?id=${liga.id}">
-                            <div class="country-name black-text">${liga.name}<i class="material-icons right">details</i></div>
+                            <div class="country-name black-text">${liga.name}<i class="material-icons right">navigate_next</i></div>
                             </a>
                             </div>
                             `
@@ -113,7 +113,7 @@ function getLigaByName() {
                     countryHTML += `
                     <div class="col s12 m6 l4">
                     <a href="./team.html?id=${liga.id}">
-                    <div class="country-name black-text">${liga.name}<i class="material-icons right">details</i></div>
+                    <div class="country-name black-text">${liga.name}<i class="material-icons right">navigate_next</i></div>
                     </a>
                     </div>
                     `
@@ -228,7 +228,7 @@ function getSavedCountrys() {
             countryHTML += `
             <div class="col s12 m6 l4">
                 <a href="./liga.html?id=${country.competitions[0].area.id}&saved=true">
-                <div class="country-name black-text">${country.competitions[0].area.name}<i class="material-icons right">details</i></div>
+                <div class="country-name black-text">${country.competitions[0].area.name}<i class="material-icons right">navigate_next</i></div>
                 </a>
                 </div>
                 
@@ -252,7 +252,7 @@ function getSavedCountryById() {
                 `
                 <div class="col s12 m6 l4">
                     <a href="./team.html?id=${liga.id}">
-                        <div class="country-name black-text">${liga.name}<i class="material-icons right">details</i></div>
+                        <div class="country-name black-text">${liga.name}<i class="material-icons right">navigate_next</i></div>
                     </a>
                 </div>
             `

@@ -1,95 +1,158 @@
-const CACHE_NAME = "v0";
-let assetsCache = [
-    "/",
-    "/index.html",
-    "/liga.html",
-    "/team.html",
-    "/navbar.html",
-    "/pages/home.html",
-    "/pages/favorite.html",
-    "/pages/about.html",
-    // js
-    "/js/materialize.js",
-    "/js/materialize.min.js",
-    "/js/navbar.js",
-    "/js/push.js",
-    "/js/api.js",
-    "/js/db.js",
-    "/js/idb.js",
-    "/js/fromSave.js",
-    "/js/notification.js",
-    // css
-    "/css/materialize.css",
-    "/css/materialize.min.css",
-    "/css/styles.css",
-    // manifest
-    "/manifest.json",
-    // serviceworker
-    "/service-worker.js",
-    // link
-    "https://fonts.googleapis.com/icon?family=Material+Icons",
-    "https://fonts.gstatic.com/s/materialicons/v52/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2",
-    "https://fonts.gstatic.com/s/materialicons/v53/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2",
-    // assets
-    "/assets/stadium1.png",
-    "/assets/stadium2.png",
-    "/assets/ball.jpg",
-    "/assets/maulana.jpg",
-    "/assets/jugling.png",
-    "/assets/kiper.png",
-    "/assets/Fovers512x512.png",
-    "/assets/Fovers384x384.png",
-    "/assets/Fovers256x256.png",
-    "/assets/Fovers192x192.png",
-    "/assets/Fovers128x128.png",
-    "/assets/Fovers96x96.png",
-]
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js');
+
+if (workbox)
+    console.log(`Workbox berhasil dimuat`);
+else
+    console.log(`Workbox gagal dimuat`);
 
 
-self.addEventListener("install", function (event) {
-    event.waitUntil(
-        caches.open(CACHE_NAME).then(function (cache) {
-            return cache.addAll(assetsCache);
-        })
-    );
-});
+workbox.precaching.precacheAndRoute([{
+        url: '/index.html',
+        revision: '1'
+    },
+    {
+        url: '/liga.html',
+        revision: '1'
+    },
+    {
+        url: '/team.html',
+        revision: '1'
+    },
+    {
+        url: '/navbar.html',
+        revision: '1'
+    },
+    {
+        url: '/manifest.json',
+        revision: '1'
+    },
+    {
+        url: '/js/api.js',
+        revision: '1'
+    },
+    {
+        url: '/js/db.js',
+        revision: '1'
+    },
+    {
+        url: '/js/fromSave.js',
+        revision: '1'
+    },
+    {
+        url: '/js/idb.js',
+        revision: '1'
+    },
+    {
+        url: '/js/materialize.min.js',
+        revision: '1'
+    },
+    {
+        url: '/js/navbar.js',
+        revision: '1'
+    },
+    {
+        url: '/js/notification.js',
+        revision: '1'
+    },
+    {
+        url: '/js/push.js',
+        revision: '1'
+    },
+    {
+        url: '/css/materialize.min.css',
+        revision: '1'
+    },
+    {
+        url: '/css/styles.css',
+        revision: '1'
+    },
+    {
+        url: '/assets/ball.jpg',
+        revision: '1'
+    },
+    {
+        url: '/assets/jugling.png',
+        revision: '1'
+    },
+    {
+        url: '/assets/kiper.png',
+        revision: '1'
+    },
+    {
+        url: '/assets/maulana.jpg',
+        revision: '1'
+    },
+    {
+        url: '/assets/stadium1.png',
+        revision: '1'
+    },
+    {
+        url: '/assets/stadium2.png',
+        revision: '1'
+    },
+    {
+        url: '/assets/Fovers96x96.png',
+        revision: '1'
+    },
+    {
+        url: '/assets/Fovers128x128.png',
+        revision: '1'
+    },
+    {
+        url: '/assets/Fovers192x192.png',
+        revision: '1'
+    },
+    {
+        url: '/assets/Fovers256x256.png',
+        revision: '1'
+    },
+    {
+        url: '/assets/Fovers384x384.png',
+        revision: '1'
+    },
+    {
+        url: '/assets/Fovers512x512.png',
+        revision: '1'
+    },
+    {
+        url: 'https://fonts.googleapis.com/icon?family=Material+Icons',
+        revision: '1'
+    },
+    {
+        url: 'https://fonts.gstatic.com/s/materialicons/v52/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2',
+        revision: '1'
+    },
+    {
+        url: 'https://fonts.gstatic.com/s/materialicons/v53/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2',
+        revision: '1'
+    },
+
+]);
 
 
-self.addEventListener("fetch", function(event) {
-    const base_url = "https://api.football-data.org/v2/";
-    if (event.request.url.indexOf(base_url) > -1) {
-      event.respondWith(
-        caches.open(CACHE_NAME).then(function(cache) {
-          return fetch(event.request).then(function(response) {
-            cache.put(event.request.url, response.clone());
-            return response;
-          })
-        })
-      );
-    }  else {
-        event.respondWith(
-            caches.match(event.request, { ignoreSearch: true }).then(function(response) {
-                return response || fetch (event.request);
-            })
-        )
-    }
-  });
+workbox.routing.registerRoute(
+    new RegExp('/pages/'),
+    workbox.strategies.staleWhileRevalidate({
+        cacheName: 'pages'
+    })
+);
 
+workbox.routing.registerRoute(
+    new RegExp('https://api.football-data.org/v2'),
+    workbox.strategies.staleWhileRevalidate({
+        cacheName: 'url'
+    })
+);
 
-self.addEventListener("activate", function (event) {
-    event.waitUntil(
-        caches.keys().then(function (cacheNames) {
-            return Promise.all(
-                cacheNames.map(function (cacheName) {
-                    if (cacheName != CACHE_NAME) {
-                        console.log("ServiceWorker: cache " + cacheName + " dihapus");
-                        return caches.delete(cacheName);
-                    }
-                })
-            );
-        })
-    );
-});
+workbox.routing.registerRoute(
+    new RegExp('liga.html'),
+    workbox.strategies.staleWhileRevalidate()
+);
+
+workbox.routing.registerRoute(
+    new RegExp('team.html'),
+    workbox.strategies.staleWhileRevalidate()
+);
 
 self.addEventListener('push', function (event) {
     var body;
