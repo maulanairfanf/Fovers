@@ -1,9 +1,5 @@
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js');
-
-if (workbox)
-    console.log(`Workbox berhasil dimuat`);
-else
-    console.log(`Workbox gagal dimuat`);
+// const {GenerateSW} = require('workbox-webpack-plugin');
 
 
 workbox.precaching.precacheAndRoute([{
@@ -127,21 +123,19 @@ workbox.precaching.precacheAndRoute([{
         revision: '1'
     },
 
-]);
+], {
+    ignoreUrlParametersMatching: [/.*/]
+});
 
 
 workbox.routing.registerRoute(
     new RegExp('/pages/'),
-    workbox.strategies.staleWhileRevalidate({
-        cacheName: 'pages'
-    })
+    workbox.strategies.staleWhileRevalidate()
 );
 
 workbox.routing.registerRoute(
     new RegExp('https://api.football-data.org/v2'),
-    workbox.strategies.staleWhileRevalidate({
-        cacheName: 'url'
-    })
+    workbox.strategies.staleWhileRevalidate()
 );
 
 workbox.routing.registerRoute(

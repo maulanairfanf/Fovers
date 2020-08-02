@@ -71,7 +71,14 @@ function getCountrys() {
                 document.getElementById("country").innerHTML = countryHTML;
                 resolve(data)
                 remove();
-            }).catch(error);
+                M.toast({
+                    html: 'Succes'
+                })
+            }).catch(function (error) {
+                M.toast({
+                    html: 'Failed'
+                })
+            });
     })
 }
 
@@ -108,6 +115,7 @@ function getLigaByName() {
             .then(status)
             .then(json)
             .then(function (data) {
+                console.log(data);
                 let countryHTML = ""
                 data.competitions.forEach(function (liga) {
                     countryHTML += `
@@ -121,8 +129,17 @@ function getLigaByName() {
                 document.getElementById("body-render-liga").innerHTML = countryHTML;
                 resolve(data)
                 remove();
+                if (data.count === 0) {
+                    M.toast({
+                        html: 'failed'
+                    })
+                } else {
+                    M.toast({
+                        html: 'Succes'
+                    })
+                }
             }).catch(function (error) {
-                console.log(error);
+
             });
     })
 }
@@ -191,8 +208,14 @@ function getTeams() {
                 document.getElementById("body-render-team").innerHTML = teamHTML;
                 resolve(data);
                 remove();
+                M.toast({
+                    html: 'Succes'
+                })
             }).catch(function (error) {
                 console.log(error);
+                M.toast({
+                    html: 'Failed'
+                })
             });
         var buttonHTML = `
             <a class="waves-effect waves-light btn" id="button-team" onclick="window.history.back()">
