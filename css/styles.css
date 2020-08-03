@@ -11,7 +11,7 @@
     color: #c5cae9;
 }
 
-.home h3 {
+.home h3 , .liga h3 , .team h3 {
     padding-bottom: 2%;
     border-bottom: 1px solid #c5cae9;
 }
@@ -48,4 +48,12 @@ tr .responsive-img {
 
 #body-render-button {
     width: 100%;
+}
+
+#button a{
+    width: 50%;
+}
+
+#body-render-button a {
+    margin-top: 2%;
 }

@@ -71,14 +71,16 @@ function getCountrys() {
                 document.getElementById("country").innerHTML = countryHTML;
                 resolve(data)
                 remove();
-                M.toast({
-                    html: 'Succes'
-                })
-            }).catch(function (error) {
-                M.toast({
-                    html: 'Failed'
-                })
-            });
+                if (data.count === 0) {
+                    M.toast({
+                        html: 'Data tidak tersedia'
+                    })
+                } else {
+                    M.toast({
+                        html: 'Succes'
+                    })
+                }
+            }).catch(function (error) {});
     })
 }
 
@@ -131,7 +133,7 @@ function getLigaByName() {
                 remove();
                 if (data.count === 0) {
                     M.toast({
-                        html: 'failed'
+                        html: 'Data tidak tersedia'
                     })
                 } else {
                     M.toast({
@@ -214,11 +216,11 @@ function getTeams() {
             }).catch(function (error) {
                 console.log(error);
                 M.toast({
-                    html: 'Failed'
+                    html: 'Data tidak tersedia'
                 })
             });
         var buttonHTML = `
-            <a class="waves-effect waves-light btn" id="button-team" onclick="window.history.back()">
+            <a class="waves-effect waves-light btn" id="button-team" onclick="window.history.back()" style="width : 50%">
                 <i class="material-icons left">arrow_back</i>Back
             </a>
             `
