@@ -38,13 +38,15 @@ function getCountrys() {
                     response.json().then(function (data) {
                         let countryHTML = "";
                         data.areas.forEach(function (country) {
-                            countryHTML += `
+                            if (country.id === 2032 || country.id === 2072 || country.id === 2077 || country.id === 2081 || country.id === 2088 || country.id === 2114 || country.id === 2163 || country.id === 2187 || country.id === 2267) {
+                                countryHTML += `
                             <div class="col s12 m6 l4">
                         <a href="./liga.html?id=${country.id}">
                         <div class="country-name black-text">${country.name}<i class="material-icons right">navigate_next</i></div>
                         </a>
                         </div>
                         `
+                            }
                         })
                         document.getElementById("country").innerHTML = countryHTML;
                         resolve(data)
@@ -58,15 +60,18 @@ function getCountrys() {
             .then(status)
             .then(json)
             .then(function (data) {
+
                 let countryHTML = "";
                 data.areas.forEach(function (country) {
-                    countryHTML += `
+                    if (country.id === 2032 || country.id === 2072 || country.id === 2077 || country.id === 2081 || country.id === 2088 || country.id === 2114 || country.id === 2163 || country.id === 2187 || country.id === 2267) {
+                        countryHTML += `
                     <div class="col s12 m6 l4">
                     <a href="./liga.html?id=${country.id}">
                     <div class="country-name black-text">${country.name}<i class="material-icons right">navigate_next</i></div>
                     </a>
                     </div>
-            `
+                `
+                    }
                 })
                 document.getElementById("country").innerHTML = countryHTML;
                 resolve(data)

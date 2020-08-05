@@ -18,6 +18,18 @@ workbox.precaching.precacheAndRoute([{
         revision: '1'
     },
     {
+        url: '/pages/about.html',
+        revision: '1'
+    },
+    {
+        url: '/pages/favorite.html',
+        revision: '1'
+    },
+    {
+        url: '/pages/home.html',
+        revision: '1'
+    },
+    {
         url: '/manifest.json',
         revision: '1'
     },
