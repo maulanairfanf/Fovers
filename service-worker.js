@@ -140,7 +140,17 @@ workbox.precaching.precacheAndRoute([{
 
 workbox.routing.registerRoute(
     ({url}) => url.origin === "https://api.football-data.org/v2",
-    workbox.strategis.staleWhileRevalidate()
+    workbox.strategies.staleWhileRevalidate()
+)
+
+workbox.routing.registerRoute(
+    ({url}) => url.origin === "https://upload.wikimedia.org/wikipedia/en",
+    workbox.strategies.staleWhileRevalidate()
+)
+
+workbox.routing.registerRoute(
+    ({url}) => url.origin === "https://fonts.googleapis.com/icon?family=Material+Icons",
+    workbox.strategies.staleWhileRevalidate()
 )
 
 workbox.routing.registerRoute(
