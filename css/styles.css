@@ -11,7 +11,9 @@
     color: #c5cae9;
 }
 
-.home h3 , .liga h3 , .team h3 {
+.home h3,
+.liga h3,
+.team h3 {
     padding-bottom: 2%;
     border-bottom: 1px solid #c5cae9;
 }
@@ -50,8 +52,8 @@ tr .responsive-img {
     width: 100%;
 }
 
-#button a{
-    width: 50%;
+#button a {
+    min-width: 60%;
 }
 
 #body-render-button a {

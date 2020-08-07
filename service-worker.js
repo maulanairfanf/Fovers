@@ -144,7 +144,7 @@ workbox.routing.registerRoute(
 )
 
 workbox.routing.registerRoute(
-    ({url}) => url.origin === "https://upload.wikimedia.org/wikipedia/en",
+    ({url}) => url.origin === "https://upload.wikimedia.org",
     workbox.strategies.staleWhileRevalidate()
 )
 
@@ -157,11 +157,6 @@ workbox.routing.registerRoute(
     new RegExp('/pages/'),
     workbox.strategies.staleWhileRevalidate()
 )
-
-// workbox.routing.registerRoute(
-//     new RegExp('https://api.football-data.org/v2'),
-//     workbox.strategies.staleWhileRevalidate()
-// );
 
 workbox.routing.registerRoute(
     new RegExp('liga.html'),
