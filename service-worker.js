@@ -138,16 +138,20 @@ workbox.precaching.precacheAndRoute([{
     ignoreUrlParametersMatching: [/.*/]
 });
 
+workbox.routing.registerRoute(
+    ({url}) => url.origin === "https://api.football-data.org/v2",
+    workbox.strategis.staleWhileRevalidate()
+)
 
 workbox.routing.registerRoute(
     new RegExp('/pages/'),
     workbox.strategies.staleWhileRevalidate()
-);
+)
 
-workbox.routing.registerRoute(
-    new RegExp('https://api.football-data.org/v2'),
-    workbox.strategies.staleWhileRevalidate()
-);
+// workbox.routing.registerRoute(
+//     new RegExp('https://api.football-data.org/v2'),
+//     workbox.strategies.staleWhileRevalidate()
+// );
 
 workbox.routing.registerRoute(
     new RegExp('liga.html'),

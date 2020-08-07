@@ -18,7 +18,10 @@ function saveForLater(data) {
     .then(function () {
       M.toast({html: 'Berhasil Add to Favorite'})
       console.log("country berhasil di simpan.");
-    });
+    })
+    .catch(function(error){
+      console.log(error);
+    })
 }
 
 function Delete(data) {
@@ -33,5 +36,8 @@ function Delete(data) {
     .then(function () {
       M.toast({html: 'Berhasil Delete'})
       console.log("country berhasil di hapus.");
+    })
+    .catch(function(error){
+      console.log(error);
     })
 }

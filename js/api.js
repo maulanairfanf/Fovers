@@ -31,31 +31,6 @@ function getCountrys() {
     return new Promise(function (resolve, reject) {
 
 
-
-        if ('caches' in window) {
-            caches.match(base_url_areas).then(function (response) {
-                if (response) {
-                    response.json().then(function (data) {
-                        let countryHTML = "";
-                        data.areas.forEach(function (country) {
-                            if (country.id === 2032 || country.id === 2072 || country.id === 2077 || country.id === 2081 || country.id === 2088 || country.id === 2114 || country.id === 2163 || country.id === 2187 || country.id === 2267) {
-                                countryHTML += `
-                            <div class="col s12 m6 l4">
-                        <a href="./liga.html?id=${country.id}">
-                        <div class="country-name black-text">${country.name}<i class="material-icons right">navigate_next</i></div>
-                        </a>
-                        </div>
-                        `
-                            }
-                        })
-                        document.getElementById("country").innerHTML = countryHTML;
-                        resolve(data)
-                    })
-                }
-            })
-        }
-
-
         fetchApi(base_url_areas)
             .then(status)
             .then(json)
@@ -96,28 +71,6 @@ function getLigaByName() {
 
         const urlParamsLiga = new URLSearchParams(window.location.search);
         const ParentAreaIdParam = urlParamsLiga.get("id");
-
-        if ('caches' in window) {
-            caches.match(base_url_liga + ParentAreaIdParam).then(function (response) {
-                if (response) {
-                    response.json().then(function (data) {
-                        let countryHTML = ""
-                        data.competitions.forEach(function (liga) {
-                            countryHTML += `
-                            <div class="col s12 m6 l4">
-                            <a href="./team.html?id=${liga.id}">
-                            <div class="country-name black-text">${liga.name}<i class="material-icons right">navigate_next</i></div>
-                            </a>
-                            </div>
-                            `
-                        })
-                        document.getElementById("body-render-liga").innerHTML = countryHTML;
-                        resolve(data)
-                    })
-                }
-            })
-        }
-
         fetchApi(base_url_liga + ParentAreaIdParam)
             .then(status)
             .then(json)
@@ -158,36 +111,6 @@ function getTeams() {
 
         const urlParamsLiga = new URLSearchParams(window.location.search);
         const ParentLigaIdParam = urlParamsLiga.get("id");
-
-        if ('caches' in window) {
-            caches.match(base_url_team + ParentLigaIdParam + "/standings").then(function (response) {
-                if (response) {
-                    response.json().then(function (data) {
-                        let teamHTML = ""
-                        data.standings[0].table.forEach(function (team) {
-                            teamHTML += `
-                      <tr>
-                        <td>${team.position}</td>
-                        <td class="valign-wrapper center-align">
-                        
-                            <img alt="lambang" src="${team.team.crestUrl}" class="responsive-img">
-                            <span>${team.team.name}</span>
-                        </td>
-                        <td>${team.playedGames}</td>
-                        <td>${team.won}</td>
-                        <td>${team.draw}</td>
-                        <td>${team.lost}</td>
-                        <td>${team.points}</td>
-                      </tr>
-                    `
-                        })
-                        document.getElementById("body-render-team").innerHTML = teamHTML;
-                        resolve(data)
-
-                    })
-                }
-            })
-        }
 
 
         fetchApi(base_url_team + ParentLigaIdParam + "/standings")
